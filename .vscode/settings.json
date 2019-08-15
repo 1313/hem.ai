@@ -25,11 +25,5 @@
             "autoFix": true
         }
     ],
-    "eslint.enable": true,
-    "eslint.workingDirectories": [
-        {
-            "directory": "./src",
-            "changeProcessCWD": true
-        }
-    ],
+    "eslint.enable": true
 }

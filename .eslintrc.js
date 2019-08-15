@@ -8,8 +8,7 @@ module.exports = {
         
         "project": path.resolve(__dirname, './tsconfig.json'),
         "tsconfigRootDir": __dirname,
-        "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
-        "sourceType": "module" // Allows for the use of imports
+        "extraFileExtensions": ['.ts', '.js'],
     },
     "extends": [ 
         "plugin:@typescript-eslint/eslint-recommended",

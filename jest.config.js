@@ -1,8 +1,3 @@
 module.exports = {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-  }  
+    projects: ['<rootDir>/jest-test.config.js', '<rootDir>/jest-eslint.config.js'],
+};
