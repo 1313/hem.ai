@@ -2,7 +2,7 @@
 
 Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt man behöver i hemmet. Den kan koppla upp sig mot diverse onlinematbutiker och lägga beställningar åt en automatiskt.
 
-> ## Specifikation
+## Specifikation
 
 ### Algoritm
 
@@ -29,7 +29,7 @@ Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt 
   - Kopplingar till produkter i onlinebutiker
   - Uppdaterade priser
 
-> ## UX/UI
+## UX/UI
 
 ### Instaadd
 
