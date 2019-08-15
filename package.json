@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prebuild": "npm test",
+    "build": "tsc --project ."
   },
   "authors": [
     "1313",
