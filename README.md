@@ -18,9 +18,22 @@ Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt 
     - Output: Ingredienslista som matchar given input
     - Output: Recept för antalet givna mål
   - Kriterier
-    - Varierade rätter baserat på primär och sekundär receptingrediens
+    - Tid att laga
+    - Allergier
+    - Varierade rätter
     - Optimera inköp av mängd
     - Hålla budget och matcha profil
+    - Livslängd på ingrediener (Decay value)
+
+> Knapsack Branch and Bound approach
+1. Select recipes based on tag profile
+2. Take most valued recipes
+3. If recipe is linked to neighbur decrease.
+
+> Markov Chain approach
+1. Greedy algo
+2. markov model
+
 
 ### Datamodel
 
