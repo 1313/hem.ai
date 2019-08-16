@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/1313/hemsmart.svg?branch=master)](https://travis-ci.com/1313/hemsmart)
+
 # Introduktion
 
 Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt man behöver i hemmet. Den kan koppla upp sig mot diverse onlinematbutiker och lägga beställningar åt en automatiskt.
