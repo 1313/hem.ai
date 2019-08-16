@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/1313/hemsmart.svg?branch=master)](https://travis-ci.com/1313/hemsmart)
+[![Coverage Status](https://coveralls.io/repos/github/1313/hemsmart/badge.svg?branch=master)](https://coveralls.io/github/1313/hemsmart?branch=master)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/1313/hemsmart)
 
 # Introduktion
 
