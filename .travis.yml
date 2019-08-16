@@ -1,11 +1,10 @@
 language: node_js
 node_js:
-<<<<<<< HEAD
-  - 12
+  - "12"
 notifications:
   slack: signalvnoise:BrQfXTzaT5BqT4qOKNSRmMYM
-=======
-  - "12”
-install:
-  - npm install
->>>>>>> 50e972b... Create .travis.yml
+jobs:
+  include:
+    - stage: Produce Coverage
+      node_js: node
+      script: jest --coverage --coverageReporters=text-lcov | coveralls
