@@ -1,4 +1,5 @@
 import { Groupable } from './Groupable';
+import TinyQueue from 'tinyqueue';
 
 export interface Item extends Groupable {
     baseWeight: number;
@@ -61,16 +62,18 @@ function bound(u: Node, input: BranchAndBoundInput): number {
 export function branchAndBound(input: BranchAndBoundInput): Array<Item> {
     input.items.sort(sortByValueWeightRatio);
 
-    const queue: Array<Node> = [];
-
     let current: Node = { level: -1, profit: 0, weight: 0, bound: 0 };
+    const queue: TinyQueue<Node> = new TinyQueue(
+        [current],
+        (a, b): number => b.bound - a.bound,
+    );
     const resultNode: Node = { level: 0, weight: 0, profit: 0, bound: 0 };
 
     let maxProfit = 0;
     queue.push(current);
     const result = [];
     while (queue.length > 0) {
-        current = queue.shift() as Node;
+        current = queue.pop() as Node;
 
         if (current.level == -1) {
             resultNode.level = 0;
