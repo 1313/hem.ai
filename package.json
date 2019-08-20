@@ -5,6 +5,8 @@
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
+    "precoverage": "npm run-script pretest",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "pretest": "depcheck --ignore-bin-package --ignores='eslint-*,@types/*,@typescript-eslint/*,jest-*'",
     "test": "jest",
     "prebuild": "npm test",
