@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Potato1",
+        "ingredient": "potato",
+        "baseWeight": 100,
+        "value": 10
+    }
+]

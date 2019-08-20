@@ -10,7 +10,13 @@ const WeekOrderFixture = [
     {
         numberOfMeals: 1,
         budget: 100,
-        ingredients: [{ cost: 50 }, { cost: 20 }, { cost: 5 }, { cost: 5 }, { cost: 10 }],
+        ingredients: [
+            { cost: 50 },
+            { cost: 20 },
+            { cost: 5 },
+            { cost: 5 },
+            { cost: 10 },
+        ],
     },
     {
         numberOfMeals: 10,
@@ -29,29 +35,44 @@ const WeekOrderFixture = [
         numberOfMeals: 2,
         budget: 400,
         cost: 200,
-        ingredients: [{ cost: 100 }, { cost: 50 }, { cost: 20 }, { cost: 5 }, { cost: 5 }, { cost: 10 }],
+        ingredients: [
+            { cost: 100 },
+            { cost: 50 },
+            { cost: 20 },
+            { cost: 5 },
+            { cost: 5 },
+            { cost: 10 },
+        ],
     },
 ];
 
-describe.each(WeekOrderFixture)('Ingredient Cost', ({ budget, numberOfMeals, ingredients }) => {
-    (Ingredients.Ingredients as Array<{ cost: number }>) = ingredients;
-    const weekOrder = generateWeekOrder({ numberOfMeals, budget });
+describe.each(WeekOrderFixture)(
+    'Schedule.generateWeekOrder',
+    ({ budget, numberOfMeals, ingredients }) => {
+        (Ingredients.Ingredients as Array<{ cost: number }>) = ingredients;
+        const weekOrder = generateWeekOrder({ numberOfMeals, budget });
 
-    test(`should give me a WeekOrder object with recipes matching
+        test(`should give me a WeekOrder object with recipe
           elements matching input days argumets`, () => {
-        expect(weekOrder.recipes).toHaveLength(numberOfMeals);
-    });
+            expect(weekOrder.recipes).toHaveLength(numberOfMeals);
+        });
 
-    test('should give me a list of ingredients matching numberOfMeals', () => {
-        expect(weekOrder.ingredients.length).toBeGreaterThanOrEqual(numberOfMeals);
-    });
+        test('should give me a list of ingredients matching numberOfMeals', () => {
+            expect(weekOrder.ingredients.length).toBeGreaterThanOrEqual(
+                numberOfMeals,
+            );
+        });
 
-    test('should not exceed my budget', () => {
-        expect(weekOrder.cost).toBeLessThanOrEqual(budget);
-    });
+        test('should not exceed my budget', () => {
+            expect(weekOrder.cost).toBeLessThanOrEqual(budget);
+        });
 
-    test('cost of ingredients should be reflected in all weekOrder cost', () => {
-        const ingredientCost = weekOrder.ingredients.reduce((cost, ingredient) => cost + ingredient.cost, 0);
-        expect(ingredientCost).toBe(weekOrder.cost);
-    });
-});
+        test('cost of ingredients should be reflected in all weekOrder cost', () => {
+            const ingredientCost = weekOrder.ingredients.reduce(
+                (cost, ingredient) => cost + ingredient.cost,
+                0,
+            );
+            expect(ingredientCost).toBe(weekOrder.cost);
+        });
+    },
+);

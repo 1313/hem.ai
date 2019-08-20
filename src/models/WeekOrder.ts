@@ -9,6 +9,9 @@ export class WeekOrder {
     }
 
     get cost(): number {
-        return this.ingredients.reduce((cost, ingredient) => cost + ingredient.cost, 0);
+        return this.ingredients.reduce(
+            (cost, ingredient) => cost + ingredient.cost,
+            0,
+        );
     }
 }

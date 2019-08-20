@@ -25,5 +25,9 @@
             "autoFix": true
         }
     ],
-    "eslint.enable": true
+    "eslint.enable": true,
+    "files.associations": {
+        "algorithm": "cpp",
+        "iostream": "cpp"
+    }
 }
