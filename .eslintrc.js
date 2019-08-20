@@ -3,14 +3,14 @@ module.exports = {
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "jest",
-        "prettier", 
+        "prettier",
         "@typescript-eslint"
     ],
     "parserOptions": {
-        createDefaultProgram: true, 
+        createDefaultProgram: true,
         project: './tsconfig.json',
         tsconfigRootDir: __dirname
-    }, 
+    },
     "extends": [
         "plugin:jest/all",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -19,6 +19,6 @@ module.exports = {
         "plugin:prettier/recommended"
     ],
     "rules": {
-        "jest/prefer-expect-assertions": [0] 
+        "jest/prefer-expect-assertions": [0]
     }
 }

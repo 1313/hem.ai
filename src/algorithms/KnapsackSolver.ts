@@ -1,113 +1,126 @@
 import { Groupable } from './Groupable';
 import TinyQueue from 'tinyqueue';
 
-export interface Item extends Groupable {
-    baseWeight: number;
+interface Item extends Groupable {
+    weight: number;
     value: number;
 }
-export interface BranchAndBoundInput {
+
+interface BranchAndBoundInput {
     items: Array<Item>;
     capacity: number;
 }
 
 function sortByValueWeightRatio(a: Item, b: Item): number {
-    return b.value / b.baseWeight - a.value / a.baseWeight;
+    return b.value / b.weight - a.value / a.weight;
 }
+
 interface Node {
-    profit: number;
+    value: number;
     level: number;
     weight: number;
-    bound: number;
+    upperBound: number;
 }
 
-function bound(u: Node, input: BranchAndBoundInput): number {
-    // if weight overcomes the knapsack capacity, return
-    // 0 as expected bound
-    if (u.weight >= input.capacity) {
+function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
+    if (node.weight >= input.capacity) {
         return 0;
     }
-    // initialize bound on profit by u profit
-    let profitBound = Math.floor(u.profit);
+    // Start with the current value
+    let upperBoundValue = node.value;
 
-    // start including items from index 1 more to u
-    // item index
-    let j = u.level + 1;
-    let totweight = Math.floor(u.weight);
+    // Calculate bound on levels below current
+    let boundLevel = node.level + 1;
+    // Start totalWeight with node.weight
+    let totalWeight = node.weight;
 
-    // checking index condition and knapsack capacity
-    // condition
+    // Hypotetically pick all items below in greedy manner
     while (
-        j < input.items.length &&
-        Math.floor(totweight) + input.items[j].baseWeight <= input.capacity
+        boundLevel < input.items.length &&
+        totalWeight + input.items[boundLevel].weight <= input.capacity
     ) {
-        totweight += Math.floor(input.items[j].baseWeight);
-
-        profitBound += Math.floor(input.items[j].value);
-        j++;
+        totalWeight += input.items[boundLevel].weight;
+        upperBoundValue += input.items[boundLevel].value;
+        boundLevel++;
     }
 
-    // If k is not n, include last item partially for
-    // upper bound on profit
-
-    if (j < input.items.length) {
-        profitBound += Math.floor(
-            ((input.capacity - totweight) * input.items[j].value) /
-                input.items[j].baseWeight,
-        );
+    //If there are items left to pick
+    if (boundLevel < input.items.length) {
+        // Take a fraction of the next item to fill the knapsack
+        upperBoundValue +
+            ((input.capacity - totalWeight) * input.items[boundLevel].value) /
+                input.items[boundLevel].weight;
     }
 
-    return profitBound;
+    return upperBoundValue;
 }
 
-export function branchAndBound(input: BranchAndBoundInput): Array<Item> {
+interface BranchAndBoundOutput {
+    maxValue: number;
+    items: Array<Item>;
+}
+
+export function branchAndBound(
+    input: BranchAndBoundInput,
+): BranchAndBoundOutput {
     input.items.sort(sortByValueWeightRatio);
 
-    let current: Node = { level: -1, profit: 0, weight: 0, bound: 0 };
+    let current: Node = { level: -1, value: 0, weight: 0, upperBound: 0 };
+
     const queue: TinyQueue<Node> = new TinyQueue(
         [current],
-        (a, b): number => b.bound - a.bound,
+        (a, b): number => b.upperBound - a.upperBound,
     );
-    const resultNode: Node = { level: 0, weight: 0, profit: 0, bound: 0 };
 
-    let maxProfit = 0;
+    let lowerBoundValue = 0;
     queue.push(current);
-    const result = [];
+    const pickedItems = [];
     while (queue.length > 0) {
         current = queue.pop() as Node;
 
-        if (current.level == -1) {
-            resultNode.level = 0;
-        }
-
-        if (current.level == input.items.length - 1) {
+        // Knapsack is full
+        if (current.level === input.items.length - 1) {
             continue;
         }
 
-        resultNode.level = current.level + 1;
+        const nextLevel = current.level + 1;
 
-        const item = input.items[resultNode.level];
-        resultNode.weight = current.weight + item.baseWeight;
-        resultNode.profit = Math.floor(current.profit + item.value);
+        // Take the next item, increase weight and value item
+        const item = input.items[nextLevel];
+        const leftNode = {
+            ...current,
+            level: nextLevel,
+            weight: current.weight + item.weight,
+            value: current.value + item.value,
+        };
+        // if we have found a higher lowerBound update it with
+        // a new value and store the item that marked the new
+        // value
         if (
-            resultNode.weight <= input.capacity &&
-            resultNode.profit > maxProfit
+            leftNode.weight <= input.capacity &&
+            leftNode.value > lowerBoundValue
         ) {
-            maxProfit = resultNode.profit;
-            result.push(item);
-        }
-        resultNode.bound = bound(resultNode, input);
-
-        if (resultNode.bound > maxProfit) {
-            queue.push(Object.assign({}, resultNode));
+            lowerBoundValue = leftNode.value;
+            pickedItems.push(item);
         }
 
-        resultNode.weight = current.weight;
-        resultNode.profit = Math.floor(current.profit);
-        resultNode.bound = bound(resultNode, input);
-        if (resultNode.bound > maxProfit) {
-            queue.push(Object.assign({}, resultNode));
+        leftNode.upperBound = calculateUpperBound(leftNode, input);
+
+        // If we found a higher upper bound, search further
+        if (leftNode.upperBound > lowerBoundValue) {
+            queue.push(leftNode);
+        }
+
+        // Dont take the item (keep same weight and value and go to next level)
+        const rightNode = {
+            ...current,
+            level: nextLevel,
+        };
+        rightNode.upperBound = calculateUpperBound(rightNode, input);
+        if (rightNode.upperBound > lowerBoundValue) {
+            queue.push(rightNode);
         }
     }
 
-    return result;
+    return { maxValue: lowerBoundValue, items: pickedItems };
 }
