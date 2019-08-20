@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
+    "pretest": "depcheck --ignore-bin-package --ignores='eslint-*,@types/*,@typescript-eslint/*,jest-*'",
     "test": "jest",
     "prebuild": "npm test",
     "build": "tsc --project ."
@@ -16,7 +17,8 @@
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run-script pretest"
     }
   },
   "lint-staged": {
@@ -26,12 +28,13 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
+    "@types/jest": "24.0.18",
     "@typescript-eslint/eslint-plugin": "2.0.0",
     "@typescript-eslint/parser": "2.0.0",
     "coveralls": "3.0.6",
-    "eslint": "^6.2.1",
-    "eslint-config-prettier": "^6.1.0",
+    "depcheck": "0.8.3",
+    "eslint": "6.2.1",
+    "eslint-config-prettier": "6.1.0",
     "eslint-plugin-jest": "22.15.1",
     "eslint-plugin-prettier": "3.1.0",
     "husky": "3.0.4",
