@@ -17,7 +17,6 @@ function sortByValueWeightRatio(a: Item, b: Item): number {
 
 interface Node {
     items: Item[];
-    solution: string;
     value: number;
     level: number;
     weight: number;
@@ -69,7 +68,6 @@ export function branchAndBound(
 
     let current: Node = {
         items: [],
-        solution: input.items.map(() => '*').join(''),
         level: -1,
         value: 0,
         weight: 0,
@@ -82,7 +80,6 @@ export function branchAndBound(
     );
 
     let lowerBoundValue = 0;
-    queue.push(current);
     let pickedItems: Item[] = [];
     while (queue.length > 0) {
         current = queue.pop() as Node;
@@ -96,13 +93,11 @@ export function branchAndBound(
 
         // Take the next item, increase weight and value item
         const item = input.items[nextLevel];
-
         const leftNode = {
             ...current,
             level: nextLevel,
             weight: current.weight + item.weight,
             value: current.value + item.value,
-            solution: current.solution.replace(/\*/, '1'),
             items: [...current.items, item],
         };
 
@@ -116,7 +111,7 @@ export function branchAndBound(
             lowerBoundValue = leftNode.value;
             pickedItems = leftNode.items;
         }
-
+        // Caclulate upper bound for if we pick the current item
         leftNode.upperBound = calculateUpperBound(leftNode, input);
 
         // If we found a higher upper bound, search further
@@ -128,10 +123,11 @@ export function branchAndBound(
         const rightNode = {
             ...current,
             level: nextLevel,
-            solution: current.solution.replace(/\*/, '0'),
         };
-
+        // Calculate upperBound for if we skip the current item
         rightNode.upperBound = calculateUpperBound(rightNode, input);
+        // IF we have found a higher upper bound, continue searching in
+        // right direction
         if (rightNode.upperBound > lowerBoundValue) {
             queue.push(rightNode);
         }
