@@ -29,5 +29,15 @@
     "files.associations": {
         "algorithm": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "Groupable",
+        "groupables",
+        "hemsmart",
+        "lcov",
+        "prebuild",
+        "precoverage",
+        "sonarjs",
+        "tinyqueue"
+    ]
 }

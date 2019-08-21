@@ -35,7 +35,7 @@ function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
     // Start totalWeight with node.weight
     let totalWeight = node.weight;
 
-    // Hypotetically pick all items below in greedy manner
+    // Hypothetically pick all items below in greedy manner
     while (
         boundLevel < input.items.length &&
         totalWeight + input.items[boundLevel].weight <= input.capacity
@@ -75,7 +75,7 @@ function pickItemAndGoLeft(
         value: current.value + item.value,
         items: [...current.items, item],
     };
-    // Caclulate upper bound for if we pick the current item
+    // Calculate upper bound for if we pick the current item
     leftNode.upperBound = calculateUpperBound(leftNode, input);
     return leftNode;
 }
@@ -84,7 +84,7 @@ function skipItemAndGoRight(
     nextLevel: number,
     input: BranchAndBoundInput,
 ): Node {
-    // Dont take the item (keep same weight and value and go to next level)
+    // Don't take the item (keep same weight and value and go to next level)
     const rightNode = {
         ...current,
         level: nextLevel,
@@ -129,13 +129,13 @@ export function branchAndBound(
 
         const nextLevel = current.level + 1;
 
-        // Left Node reprecent that we take an item
+        // Left Node represent that we take an item
         // at current level
         const leftNode = pickItemAndGoLeft(input, nextLevel, current);
 
         // Update the current best solution
-        // I.E Lowerbound and items selected
-        // to reprecent the new lower bound
+        // I.E lower bound and items selected
+        // to represent the new lower bound
         if (
             leftNode.weight <= input.capacity &&
             leftNode.value > lowerBoundValue
@@ -149,7 +149,7 @@ export function branchAndBound(
             queue.push(leftNode);
         }
 
-        // Right node represent that we dont take the item (keep same weight and value and go to next level)
+        // Right node represent that we don't take the item (keep same weight and value and go to next level)
         const rightNode = skipItemAndGoRight(current, nextLevel, input);
 
         // If we have found a higher upper bound, continue searching in
