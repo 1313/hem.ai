@@ -4,7 +4,8 @@ module.exports = {
     "plugins": [
         "jest",
         "prettier",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "sonarjs"
     ],
     "parserOptions": {
         createDefaultProgram: true,
@@ -16,7 +17,8 @@ module.exports = {
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:sonarjs/recommended"
     ],
     "rules": {
         "jest/prefer-expect-assertions": "off",
