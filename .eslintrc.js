@@ -19,6 +19,7 @@ module.exports = {
         "plugin:prettier/recommended"
     ],
     "rules": {
-        "jest/prefer-expect-assertions": [0]
+        "jest/prefer-expect-assertions": "off",
+        "no-console": "error"
     }
 }

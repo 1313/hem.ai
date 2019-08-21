@@ -49,7 +49,7 @@ const WeekOrderFixture = [
 describe.each(WeekOrderFixture)(
     'Schedule.generateWeekOrder',
     ({ budget, numberOfMeals, ingredients }) => {
-        (Ingredients.Ingredients as Array<{ cost: number }>) = ingredients;
+        (Ingredients.Ingredients as { cost: number }[]) = ingredients;
         const weekOrder = generateWeekOrder({ numberOfMeals, budget });
 
         test(`should give me a WeekOrder object with recipe

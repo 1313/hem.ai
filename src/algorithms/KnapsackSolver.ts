@@ -1,13 +1,13 @@
 import { Groupable } from './Groupable';
 import TinyQueue from 'tinyqueue';
 
-interface Item extends Groupable {
+export interface Item extends Groupable {
     weight: number;
     value: number;
 }
 
 interface BranchAndBoundInput {
-    items: Array<Item>;
+    items: Item[];
     capacity: number;
 }
 
@@ -16,6 +16,8 @@ function sortByValueWeightRatio(a: Item, b: Item): number {
 }
 
 interface Node {
+    items: Item[];
+    solution: string;
     value: number;
     level: number;
     weight: number;
@@ -55,9 +57,9 @@ function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
     return upperBoundValue;
 }
 
-interface BranchAndBoundOutput {
+export interface BranchAndBoundOutput {
     maxValue: number;
-    items: Array<Item>;
+    items: Item[];
 }
 
 export function branchAndBound(
@@ -65,7 +67,14 @@ export function branchAndBound(
 ): BranchAndBoundOutput {
     input.items.sort(sortByValueWeightRatio);
 
-    let current: Node = { level: -1, value: 0, weight: 0, upperBound: 0 };
+    let current: Node = {
+        items: [],
+        solution: input.items.map(() => '*').join(''),
+        level: -1,
+        value: 0,
+        weight: 0,
+        upperBound: 0,
+    };
 
     const queue: TinyQueue<Node> = new TinyQueue(
         [current],
@@ -74,7 +83,7 @@ export function branchAndBound(
 
     let lowerBoundValue = 0;
     queue.push(current);
-    const pickedItems = [];
+    let pickedItems: Item[] = [];
     while (queue.length > 0) {
         current = queue.pop() as Node;
 
@@ -87,12 +96,16 @@ export function branchAndBound(
 
         // Take the next item, increase weight and value item
         const item = input.items[nextLevel];
+
         const leftNode = {
             ...current,
             level: nextLevel,
             weight: current.weight + item.weight,
             value: current.value + item.value,
+            solution: current.solution.replace(/\*/, '1'),
+            items: [...current.items, item],
         };
+
         // if we have found a higher lowerBound update it with
         // a new value and store the item that marked the new
         // value
@@ -101,7 +114,7 @@ export function branchAndBound(
             leftNode.value > lowerBoundValue
         ) {
             lowerBoundValue = leftNode.value;
-            pickedItems.push(item);
+            pickedItems = leftNode.items;
         }
 
         leftNode.upperBound = calculateUpperBound(leftNode, input);
@@ -115,12 +128,17 @@ export function branchAndBound(
         const rightNode = {
             ...current,
             level: nextLevel,
+            solution: current.solution.replace(/\*/, '0'),
         };
+
         rightNode.upperBound = calculateUpperBound(rightNode, input);
         if (rightNode.upperBound > lowerBoundValue) {
             queue.push(rightNode);
         }
     }
 
-    return { maxValue: lowerBoundValue, items: pickedItems };
+    return {
+        maxValue: lowerBoundValue,
+        items: pickedItems,
+    };
 }

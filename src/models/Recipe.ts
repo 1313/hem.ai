@@ -1,5 +1,8 @@
 import { Ingredient } from './Ingredient';
 
 export class Recipe {
-    constructor(public readonly ingredients: Array<Ingredient>) {}
+    public readonly ingredients: Ingredient[];
+    constructor(ingredients: Ingredient[]) {
+        this.ingredients = ingredients;
+    }
 }

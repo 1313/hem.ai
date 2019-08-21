@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "checkJs": true,
     "downlevelIteration": true,
     "resolveJsonModule": true,
     "incremental": true /* Enable incremental compilation */,

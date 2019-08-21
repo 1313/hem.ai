@@ -6,7 +6,7 @@ describe('createGroups', () => {
         RICE,
         PASTA,
     }
-    const recipes: Array<Groupable> = [
+    const recipes: Groupable[] = [
         { group: Ingredient.PASTA },
         { group: Ingredient.PASTA },
         { group: Ingredient.POTATO },

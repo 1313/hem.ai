@@ -2,13 +2,16 @@ import { Ingredient } from './Ingredient';
 import { Recipe } from './Recipe';
 
 export class WeekOrder {
-    constructor(public readonly recipes: Array<Recipe>) {}
+    public readonly recipes: Recipe[];
+    constructor(recipes: Recipe[]) {
+        this.recipes = recipes;
+    }
 
-    get ingredients(): Array<Ingredient> {
+    public get ingredients(): Ingredient[] {
         return this.recipes.flatMap(({ ingredients }) => ingredients);
     }
 
-    get cost(): number {
+    public get cost(): number {
         return this.ingredients.reduce(
             (cost, ingredient) => cost + ingredient.cost,
             0,

@@ -1,3 +1,3 @@
 import { Ingredient } from './models/Ingredient';
 
-export const Ingredients: Array<Ingredient> = [{ name: 'Tomato', cost: 0 }];
+export const Ingredients: Ingredient[] = [{ name: 'Tomato', cost: 0 }];
