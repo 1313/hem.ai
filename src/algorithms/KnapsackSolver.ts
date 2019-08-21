@@ -61,14 +61,14 @@ export interface BranchAndBoundOutput {
     items: Item[];
 }
 
-function pickItemAndGoLeft(
+function createPickItemNode(
     input: BranchAndBoundInput,
     nextLevel: number,
     current: Node,
 ): Node {
     // Take the next item, increase weight and value item
     const item = input.items[nextLevel];
-    const leftNode = {
+    const node = {
         ...current,
         level: nextLevel,
         weight: current.weight + item.weight,
@@ -76,24 +76,24 @@ function pickItemAndGoLeft(
         items: [...current.items, item],
     };
     // Calculate upper bound for if we pick the current item
-    leftNode.upperBound = calculateUpperBound(leftNode, input);
-    return leftNode;
+    node.upperBound = calculateUpperBound(node, input);
+    return node;
 }
-function skipItemAndGoRight(
+function createSkipItemNode(
     current: Node,
     nextLevel: number,
     input: BranchAndBoundInput,
 ): Node {
     // Don't take the item (keep same weight and value and go to next level)
-    const rightNode = {
+    const node = {
         ...current,
         level: nextLevel,
     };
     // Calculate upperBound for if we skip the current item
-    rightNode.upperBound = calculateUpperBound(rightNode, input);
-    return rightNode;
+    node.upperBound = calculateUpperBound(node, input);
+    return node;
 }
-function newNode(): Node {
+function newStartNode(): Node {
     return {
         items: [],
         level: -1,
@@ -108,7 +108,7 @@ export function branchAndBound(
 ): BranchAndBoundOutput {
     input.items.sort(sortByValueWeightRatio);
 
-    let current: Node = newNode();
+    let current: Node = newStartNode();
 
     const queue: TinyQueue<Node> = new TinyQueue(
         [current],
@@ -129,33 +129,32 @@ export function branchAndBound(
 
         const nextLevel = current.level + 1;
 
-        // Left Node represent that we take an item
+        // Pick item Node represent that we take an item
         // at current level
-        const leftNode = pickItemAndGoLeft(input, nextLevel, current);
+        const pickItemNode = createPickItemNode(input, nextLevel, current);
 
         // Update the current best solution
         // I.E lower bound and items selected
         // to represent the new lower bound
         if (
-            leftNode.weight <= input.capacity &&
-            leftNode.value > lowerBoundValue
+            pickItemNode.weight <= input.capacity &&
+            pickItemNode.value > lowerBoundValue
         ) {
-            lowerBoundValue = leftNode.value;
-            pickedItems = leftNode.items;
+            lowerBoundValue = pickItemNode.value;
+            pickedItems = pickItemNode.items;
         }
 
         // If we found a higher upper bound, search further
-        if (leftNode.upperBound > lowerBoundValue) {
-            queue.push(leftNode);
+        if (pickItemNode.upperBound > lowerBoundValue) {
+            queue.push(pickItemNode);
         }
 
-        // Right node represent that we don't take the item (keep same weight and value and go to next level)
-        const rightNode = skipItemAndGoRight(current, nextLevel, input);
+        // The skip item node represent that we don't take the item (keep same weight and value and go to next level)
+        const skipItemNode = createSkipItemNode(current, nextLevel, input);
 
-        // If we have found a higher upper bound, continue searching in
-        // right direction
-        if (rightNode.upperBound > lowerBoundValue) {
-            queue.push(rightNode);
+        // If we have found a higher upper bound, continue searching
+        if (skipItemNode.upperBound > lowerBoundValue) {
+            queue.push(skipItemNode);
         }
     }
 
