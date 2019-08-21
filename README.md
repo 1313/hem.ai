@@ -53,6 +53,11 @@ Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt 
 - Snabbnavigering för att lägga till ad hoc produkter inför veckoleverans
 - Markera när någon kontinerligt använd produkt, tex toapapper behöver inhandlas igen
 
+## optimeringar
+- prisjämförelse
+- fylla ut budget rekomendation
+- överraskaningsköp
+
 ## Integrationer
 
 - Onlineaffärer
@@ -65,5 +70,7 @@ Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt 
     - Citygross
   - Husdjur
     - Vetzoo
+  - Annat
+    - Systembolaget 
 - Internetbanker
   - Tink api
