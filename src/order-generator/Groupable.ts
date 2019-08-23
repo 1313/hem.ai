@@ -1,7 +1,7 @@
 export interface Groupable {
     group: string | number;
 }
-interface Groups<T extends Groupable> {
+export interface Groups<T extends Groupable> {
     [key: number]: T[];
     [key: string]: T[];
 }

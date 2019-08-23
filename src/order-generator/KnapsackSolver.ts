@@ -1,8 +1,9 @@
-import { Groupable } from './Groupable';
+import { Groupable, createGroups, Groups } from './Groupable';
 import TinyQueue from 'tinyqueue';
 
 export interface Item extends Groupable {
     weight: number;
+    extraWeight?: number;
     value: number;
 }
 
@@ -65,13 +66,29 @@ function createPickItemNode(
     input: BranchAndBoundInput,
     nextLevel: number,
     current: Node,
+    groups: Groups<Item>,
 ): Node {
     // Take the next item, increase weight and value item
     const item = input.items[nextLevel];
+
+    const groupItems = groups[item.group];
+    if (groupItems.length > 1) {
+        let dupeMultiplier = 0;
+        const logCapacity = Math.log2(input.capacity);
+        for (const groupItem of groupItems) {
+            if (current.items.includes(groupItem)) {
+                dupeMultiplier += 2;
+                item.extraWeight = item.extraWeight || 0;
+                item.extraWeight =
+                    item.extraWeight + Math.round(logCapacity * dupeMultiplier);
+            }
+        }
+    }
+
     const node = {
         ...current,
         level: nextLevel,
-        weight: current.weight + item.weight,
+        weight: current.weight + item.weight + (item.extraWeight || 0),
         value: current.value + item.value,
         items: [...current.items, item],
     };
@@ -107,7 +124,7 @@ export function branchAndBound(
     input: BranchAndBoundInput,
 ): BranchAndBoundOutput {
     input.items.sort(sortByValueWeightRatio);
-
+    const groups = createGroups(input.items);
     let current: Node = newStartNode();
 
     const queue: TinyQueue<Node> = new TinyQueue(
@@ -131,7 +148,12 @@ export function branchAndBound(
 
         // Pick item Node represent that we take an item
         // at current level
-        const pickItemNode = createPickItemNode(input, nextLevel, current);
+        const pickItemNode = createPickItemNode(
+            input,
+            nextLevel,
+            current,
+            groups,
+        );
 
         // Update the current best solution
         // I.E lower bound and items selected

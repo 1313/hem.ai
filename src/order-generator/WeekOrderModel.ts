@@ -1,13 +1,13 @@
-import { Ingredient } from './Ingredient';
-import { Recipe } from './Recipe';
+import { IngredientModel } from './IngredientModel';
+import { RecipeModel } from './RecipeModel';
 
 export class WeekOrder {
-    public readonly recipes: Recipe[];
-    constructor(recipes: Recipe[]) {
+    public readonly recipes: RecipeModel[];
+    constructor(recipes: RecipeModel[]) {
         this.recipes = recipes;
     }
 
-    public get ingredients(): Ingredient[] {
+    public get ingredients(): IngredientModel[] {
         return this.recipes.flatMap(({ ingredients }) => ingredients);
     }
 

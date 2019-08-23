@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 module.exports = function(wallaby) {
     return {
-        files: ['src/**/*.ts', '!src/**/__tests__/*.ts', 'src/**/*.json'],
+        files: ['src/**/*.ts', '!src/**/__tests__/*.ts'],
 
         tests: ['src/**/__tests__/*.ts'],
         env: {

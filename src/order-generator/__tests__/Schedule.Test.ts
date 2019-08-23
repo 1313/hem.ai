@@ -1,5 +1,5 @@
 import { generateWeekOrder } from '../Schedule';
-import * as Ingredients from '../Ingredients';
+import * as IngredientsStore from '../IngredientsStore';
 
 const WeekOrderFixture = [
     {
@@ -49,7 +49,7 @@ const WeekOrderFixture = [
 describe.each(WeekOrderFixture)(
     'Schedule.generateWeekOrder',
     ({ budget, numberOfMeals, ingredients }) => {
-        (Ingredients.Ingredients as { cost: number }[]) = ingredients;
+        (IngredientsStore.IngredientsStore as { cost: number }[]) = ingredients;
         const weekOrder = generateWeekOrder({ numberOfMeals, budget });
 
         test(`should give me a WeekOrder object with recipe

@@ -1,4 +1,4 @@
-export interface Ingredient {
+export interface IngredientModel {
     name: string;
     cost: number;
 }
