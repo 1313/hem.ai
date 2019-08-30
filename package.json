@@ -23,8 +23,7 @@
     "license": "ISC",
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged",
-            "pre-push": "npm run-script pretest"
+            "pre-commit": "lint-staged"
         }
     },
     "lint-staged": {
