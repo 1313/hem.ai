@@ -1,0 +1,162 @@
+[
+    {
+        "capacity": 500,
+        "items": [
+            {
+                "group": "1",
+                "weight": 100,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 100,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 100,
+                "value": 1
+            },
+            {
+                "group": "3",
+                "weight": 100,
+                "value": 1
+            },
+            {
+                "group": "4",
+                "weight": 100,
+                "value": 1
+            },
+            {
+                "group": "5",
+                "weight": 100,
+                "value": 1
+            }
+        ],
+        "optimalValue": 5
+    },
+    {
+        "capacity": 5,
+        "items": [
+            {
+                "group": "1",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "3",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "3",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "5",
+                "weight": 1,
+                "value": 1
+            }
+        ],
+        "optimalValue": 4
+    },
+    {
+        "capacity": 5,
+        "items": [
+            {
+                "group": "1",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "3",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "4",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "5",
+                "weight": 1,
+                "value": 1
+            }
+        ],
+        "optimalValue": 5
+    },
+    {
+        "capacity": 2,
+        "items": [
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            }
+        ],
+        "optimalValue": 1
+    },
+    {
+        "capacity": 50,
+        "items": [
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 1
+            },
+            {
+                "group": "2",
+                "weight": 3,
+                "value": 10
+            },
+            {
+                "group": "2",
+                "weight": 1,
+                "value": 20
+            }
+        ],
+        "optimalValue": 31
+    }
+]

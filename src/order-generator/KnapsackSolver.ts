@@ -49,9 +49,9 @@ function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
     //If there are items left to pick
     if (boundLevel < input.items.length) {
         // Take a fraction of the next item to fill the knapsack
-        upperBoundValue +
+        upperBoundValue +=
             ((input.capacity - totalWeight) * input.items[boundLevel].value) /
-                input.items[boundLevel].weight;
+            input.items[boundLevel].weight;
     }
 
     return upperBoundValue;
@@ -137,7 +137,7 @@ export function branchAndBound(
     let pickedItems: Item[] = [];
 
     while (queue.length > 0) {
-        current = queue.pop() as Node;
+        current = queue.pop();
 
         // Knapsack is full
         if (current.level === input.items.length - 1) {

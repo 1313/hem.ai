@@ -53,7 +53,7 @@ describe.each(WeekOrderFixture)(
         const weekOrder = generateWeekOrder({ numberOfMeals, budget });
 
         test(`should give me a WeekOrder object with recipe
-          elements matching input days argumets`, () => {
+          elements matching input days arguments`, () => {
             expect(weekOrder.recipes).toHaveLength(numberOfMeals);
         });
 
