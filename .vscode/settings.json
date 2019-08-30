@@ -1,35 +1,14 @@
 {
-    "editor.formatOnSave": true,
-    "[javascript]": {
-        "editor.formatOnSave": false
-    },
-    "[javascriptreact]": {
-        "editor.formatOnSave": false
-    },
-    "[typescript]": {
-        "editor.formatOnSave": false
-    },
-    "[typescriptreact]": {
-        "editor.formatOnSave": false
-    },
-    "eslint.autoFixOnSave": true,
+    "eslint.autoFixOnSave": false,
     "eslint.validate": [
         "javascript",
         "javascriptreact",
-        {
-            "language": "typescript",
-            "autoFix": true
-        },
-        {
-            "language": "typescriptreact",
-            "autoFix": true
-        }
+        { "language": "typescript", "autoFix": true },
+        { "language": "typescriptreact", "autoFix": true }
     ],
-    "eslint.enable": true,
-    "files.associations": {
-        "algorithm": "cpp",
-        "iostream": "cpp"
-    },
+    "javascript.validate.enable": false,
+    "editor.formatOnSave": true,
+
     "cSpell.words": [
         "Groupable",
         "groupables",

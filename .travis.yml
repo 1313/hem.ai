@@ -1,4 +1,5 @@
 language: node_js
+cache: yarn
 node_js:
   - "12"
 notifications:
@@ -7,4 +8,4 @@ jobs:
   include:
     - stage: Produce Coverage
       node_js: node
-      script: npm run-script coverage
+      script: yarn run coverage

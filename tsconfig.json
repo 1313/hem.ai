@@ -1,23 +1,30 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "downlevelIteration": true,
-    "incremental": true /* Enable incremental compilation */,
-    "target": "es5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
-    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
-    /* Strict Type-Checking Options */
-    "strict": true /* Enable all strict type-checking options. */,
-    "noUnusedLocals": true /* Report errors on unused locals. */,
-    "noUnusedParameters": true /* Report errors on unused parameters. */,
-    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
-    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    /* Module Resolution Options */
-    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-    "noEmitOnError": true,
-    "outDir": "./dist",
-    "lib": [
-      "es2019"
-    ],
-  }
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "target": "es5",
+        "downlevelIteration": true,
+        "importHelpers": true,
+        "sourceMap": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "checkJs": true,
+        "lib": ["dom", "es2015", "es2016", "es2017", "esnext"],
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "noEmit": true
+    },
+    "include": ["src", "*.js"]
 }
