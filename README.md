@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4f468d9-c4a6-4271-9800-cc66b17701f6/deploy-status)](https://app.netlify.com/sites/nervous-meitner-c6ddd3/deploys)
 [![Build Status](https://travis-ci.com/1313/hemsmart.svg?branch=master)](https://travis-ci.com/1313/hemsmart)
 [![Coverage Status](https://coveralls.io/repos/github/1313/hemsmart/badge.svg?branch=master)](https://coveralls.io/github/1313/hemsmart?branch=master)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/1313/hemsmart)
