@@ -9,10 +9,9 @@
         "type": "github"
     },
     "scripts": {
-        "build-prod": "webpack --production",
+        "build-prod": "webpack --env.production --production",
         "clean": "rm dist/bundle.js",
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
-        "prebuild-prod": "npm test",
         "start": "webpack-dev-server --env.development",
         "test": "jest"
     },

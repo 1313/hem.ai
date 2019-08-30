@@ -19,6 +19,10 @@ module.exports = env => ({
         path: path.join(__dirname, 'dist'),
         filename: env.production ? '[name].[contenthash].js' : 'bundle.js',
     },
+    performance: {
+        maxEntrypointSize: 400000,
+        maxAssetSize: 300000
+    },
     devServer: {
         hot: true,
         contentBase: './dist',

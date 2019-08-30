@@ -1,8 +1,7 @@
 import * as d3 from 'd3';
 import ReactFauxDOM from 'react-faux-dom';
 import { branchAndBound, Item } from '../order-generator/KnapsackSolver';
-import { number } from 'prop-types';
-import { style } from 'd3';
+
 interface Point {
     x: number;
     y: number;
