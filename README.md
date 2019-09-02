@@ -1,11 +1,11 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b4f468d9-c4a6-4271-9800-cc66b17701f6/deploy-status)](https://app.netlify.com/sites/hemsmart/deploys)
-[![Build Status](https://travis-ci.com/1313/hemsmart.svg?branch=master)](https://travis-ci.com/1313/hemsmart)
-[![Coverage Status](https://coveralls.io/repos/github/1313/hemsmart/badge.svg?branch=master)](https://coveralls.io/github/1313/hemsmart?branch=master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b4f468d9-c4a6-4271-9800-cc66b17701f6/deploy-status)](https://app.netlify.com/sites/hemai/deploys)
+[![Build Status](https://travis-ci.com/1313/hem.ai.svg?branch=master)](https://travis-ci.com/1313/hem.ai)
+[![Coverage Status](https://coveralls.io/repos/github/1313/hem.ai/badge.svg?branch=master)](https://coveralls.io/github/1313/hem.ai?branch=master)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/1313/hemsmart)
 
 # Introduktion
 
-Hemsmart är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt man behöver i hemmet. Den kan koppla upp sig mot diverse onlinematbutiker och lägga beställningar åt en automatiskt.
+hem.ai är ett automatiskt hjälpmedel för inhandling av livsmedel och sånt man behöver i hemmet. Den kan koppla upp sig mot diverse onlinematbutiker och lägga beställningar åt en automatiskt.
 
 ## Specifikation
 
