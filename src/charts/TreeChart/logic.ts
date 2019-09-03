@@ -43,19 +43,22 @@ export function createExecutionTree(
         const pickNode: TreeNode = createPickItemNode(
             currentNode,
             nextLevel,
-            input,
+            input.items,
+            input.capacity,
             groups,
         );
         const skipNode: TreeNode = createSkipItemNode(
             currentNode,
             nextLevel,
-            input,
+            input.items,
+            input.capacity,
         );
 
         skipNode.optimal =
             currentNode.optimal && optimalPath[nextLevel] === false;
         pickNode.optimal =
             currentNode.optimal && optimalPath[nextLevel] === true;
+
         if (currentNode.weight <= capacity) {
             queue.push(pickNode);
             queue.push(skipNode);

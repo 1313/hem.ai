@@ -22,9 +22,10 @@ export interface Node {
 
 export function calculateUpperBound(
     node: Node,
-    input: BranchAndBoundInput,
+    items: Item[],
+    capacity: number,
 ): number {
-    if (node.weight >= input.capacity) {
+    if (node.weight >= capacity) {
         return 0;
     }
     // Start with the current value
@@ -37,20 +38,20 @@ export function calculateUpperBound(
 
     // Hypothetically pick all items below in greedy manner
     while (
-        boundLevel < input.items.length &&
-        totalWeight + input.items[boundLevel].weight <= input.capacity
+        boundLevel < items.length &&
+        totalWeight + items[boundLevel].weight <= capacity
     ) {
-        totalWeight += input.items[boundLevel].weight;
-        upperBoundValue += input.items[boundLevel].value;
+        totalWeight += items[boundLevel].weight;
+        upperBoundValue += items[boundLevel].value;
         boundLevel++;
     }
 
     //If there are items left to pick
-    if (boundLevel < input.items.length) {
+    if (boundLevel < items.length) {
         // Take a fraction of the next item to fill the knapsack
         upperBoundValue += Math.ceil(
-            ((input.capacity - totalWeight) * input.items[boundLevel].value) /
-                input.items[boundLevel].weight,
+            ((capacity - totalWeight) * items[boundLevel].value) /
+                items[boundLevel].weight,
         );
     }
 
@@ -66,20 +67,17 @@ export interface BranchAndBoundOutput {
         ratio: number;
     };
 }
-export function createPickItemNode(
-    current: Node,
-    nextLevel: number,
-    input: BranchAndBoundInput,
+function calculateExtraWeight(
     groups: Groups<Item>,
-): Node {
-    // Take the next item, increase weight and value item
-    const item = input.items[nextLevel];
-
+    item: Item,
+    current: Node,
+): number | undefined {
+    let extraWeight = 0;
     const groupItems = groups[item.group];
     if (groupItems.length > 1) {
         for (const groupItem of groupItems) {
             if (current.items.includes(groupItem)) {
-                item.extraWeight =
+                extraWeight =
                     (item.weight / item.value + 1) *
                     (item.weight / item.value + 1) *
                     current.items.length *
@@ -87,23 +85,39 @@ export function createPickItemNode(
             }
         }
     }
+    return extraWeight;
+}
+export function createPickItemNode(
+    current: Node,
+    nextLevel: number,
+    items: Item[],
+    capacity: number,
+    groups: Groups<Item>,
+): Node {
+    // Take the next item, increase weight and value item
+    const item = items[nextLevel];
 
     const node = {
         ...current,
         level: nextLevel,
-        weight: current.weight + item.weight + (item.extraWeight || 0),
+        weight:
+            current.weight +
+            item.weight +
+            calculateExtraWeight(groups, item, current),
         value: current.value + item.value,
         items: [...current.items, item],
     };
 
     // Calculate upper bound for if we pick the current item
-    node.upperBound = calculateUpperBound(node, input);
+    node.upperBound = calculateUpperBound(node, items, capacity);
     return node;
 }
+
 export function createSkipItemNode(
     current: Node,
     nextLevel: number,
-    input: BranchAndBoundInput,
+    items: Item[],
+    capacity: number,
 ): Node {
     // Don't take the item (keep same weight and value and go to next level)
     const node = {
@@ -111,7 +125,7 @@ export function createSkipItemNode(
         level: nextLevel,
     };
     // Calculate upperBound for if we skip the current item
-    node.upperBound = calculateUpperBound(node, input);
+    node.upperBound = calculateUpperBound(node, items, capacity);
     return node;
 }
 export function newStartNode(): Node {
@@ -127,9 +141,14 @@ export function newStartNode(): Node {
 export function branchAndBound(
     input: BranchAndBoundInput,
 ): BranchAndBoundOutput {
-    const groups = createGroups(input.items);
+    // Sort items in greedy manner, most value per weight
+    const items = [...input.items].sort(
+        (a, b) => b.value / b.weight - a.value / a.weight,
+    );
+    const groups = createGroups(items);
+
     let current: Node = newStartNode();
-    input.items.sort((a, b) => b.value / b.weight - a.value / a.weight);
+
     const queue: TinyQueue<Node> = new TinyQueue(
         [current],
         (a, b): number => b.upperBound - a.upperBound,
@@ -143,7 +162,7 @@ export function branchAndBound(
         current = queue.pop();
 
         // We have examined all items
-        if (current.level === input.items.length - 1) {
+        if (current.level === items.length - 1) {
             continue;
         }
         iterations++;
@@ -154,7 +173,8 @@ export function branchAndBound(
         const pickItemNode = createPickItemNode(
             current,
             nextLevel,
-            input,
+            items,
+            input.capacity,
             groups,
         );
 
@@ -175,7 +195,12 @@ export function branchAndBound(
         }
 
         // The skip item node represent that we don't take the item (keep same weight and value and go to next level)
-        const skipItemNode = createSkipItemNode(current, nextLevel, input);
+        const skipItemNode = createSkipItemNode(
+            current,
+            nextLevel,
+            items,
+            input.capacity,
+        );
 
         // If we have found a higher upper bound, continue searching
         if (skipItemNode.upperBound > lowerBoundValue) {
@@ -186,8 +211,8 @@ export function branchAndBound(
     return {
         complexity: {
             iterations,
-            max: 2 ** input.items.length,
-            ratio: iterations / 2 ** input.items.length,
+            max: 2 ** items.length,
+            ratio: iterations / 2 ** items.length,
         },
         maxValue: lowerBoundValue,
         items: pickedItems,
