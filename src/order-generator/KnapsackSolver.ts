@@ -129,7 +129,7 @@ export function branchAndBound(
 ): BranchAndBoundOutput {
     const groups = createGroups(input.items);
     let current: Node = newStartNode();
-
+    input.items.sort((a, b) => b.value / b.weight - a.value / a.weight);
     const queue: TinyQueue<Node> = new TinyQueue(
         [current],
         (a, b): number => b.upperBound - a.upperBound,

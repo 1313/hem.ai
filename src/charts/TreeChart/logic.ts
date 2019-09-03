@@ -56,12 +56,11 @@ export function createExecutionTree(
             currentNode.optimal && optimalPath[nextLevel] === false;
         pickNode.optimal =
             currentNode.optimal && optimalPath[nextLevel] === true;
-
-        // if (currentNode.optimal) {
-        queue.push(pickNode);
-        queue.push(skipNode);
-        currentNode.children = [pickNode, skipNode];
-        // }
+        if (currentNode.weight <= capacity) {
+            queue.push(pickNode);
+            queue.push(skipNode);
+            currentNode.children = [pickNode, skipNode];
+        }
     }
 
     return { executionTree: rootNode, result };
