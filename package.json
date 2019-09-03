@@ -1,11 +1,10 @@
 {
-    "name": "hemsmart",
+    "name": "hem.ai",
     "version": "0.0.1",
     "description": "",
     "main": "src/index.tsx",
-    "type": "module",
     "repository": {
-        "url": "https://github.com/1313/hemsmart",
+        "url": "https://github.com/1313/hem.ai",
         "type": "github"
     },
     "scripts": {

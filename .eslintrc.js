@@ -28,6 +28,7 @@ module.exports = {
         }
     ],
     parserOptions: {
+        createDefaultProgram: true,
         warnOnUnsupportedTypeScriptVersion: false,
         project: './tsconfig.json',
         ecmaVersion: 2019, // Allows for the parsing of modern ECMAScript features

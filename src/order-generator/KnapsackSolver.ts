@@ -16,7 +16,7 @@ function sortByValueWeightRatio(a: Item, b: Item): number {
     return b.value / b.weight - a.value / a.weight;
 }
 
-interface Node {
+export interface Node {
     items: Item[];
     value: number;
     level: number;
@@ -24,7 +24,10 @@ interface Node {
     upperBound: number;
 }
 
-function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
+export function calculateUpperBound(
+    node: Node,
+    input: BranchAndBoundInput,
+): number {
     if (node.weight >= input.capacity) {
         return 0;
     }
@@ -49,9 +52,10 @@ function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
     //If there are items left to pick
     if (boundLevel < input.items.length) {
         // Take a fraction of the next item to fill the knapsack
-        upperBoundValue +=
+        upperBoundValue += Math.ceil(
             ((input.capacity - totalWeight) * input.items[boundLevel].value) /
-            input.items[boundLevel].weight;
+                input.items[boundLevel].weight,
+        );
     }
 
     return upperBoundValue;
@@ -60,12 +64,16 @@ function calculateUpperBound(node: Node, input: BranchAndBoundInput): number {
 export interface BranchAndBoundOutput {
     maxValue: number;
     items: Item[];
+    complexity: {
+        max: number;
+        iterations: number;
+        ratio: number;
+    };
 }
-
-function createPickItemNode(
-    input: BranchAndBoundInput,
-    nextLevel: number,
+export function createPickItemNode(
     current: Node,
+    nextLevel: number,
+    input: BranchAndBoundInput,
     groups: Groups<Item>,
 ): Node {
     // Take the next item, increase weight and value item
@@ -92,11 +100,12 @@ function createPickItemNode(
         value: current.value + item.value,
         items: [...current.items, item],
     };
+
     // Calculate upper bound for if we pick the current item
     node.upperBound = calculateUpperBound(node, input);
     return node;
 }
-function createSkipItemNode(
+export function createSkipItemNode(
     current: Node,
     nextLevel: number,
     input: BranchAndBoundInput,
@@ -110,7 +119,7 @@ function createSkipItemNode(
     node.upperBound = calculateUpperBound(node, input);
     return node;
 }
-function newStartNode(): Node {
+export function newStartNode(): Node {
     return {
         items: [],
         level: -1,
@@ -135,23 +144,23 @@ export function branchAndBound(
     // Result variables
     let lowerBoundValue = 0;
     let pickedItems: Item[] = [];
-
+    let iterations = 0;
     while (queue.length > 0) {
         current = queue.pop();
 
-        // Knapsack is full
+        // We have examined all items
         if (current.level === input.items.length - 1) {
             continue;
         }
-
+        iterations++;
         const nextLevel = current.level + 1;
 
         // Pick item Node represent that we take an item
         // at current level
         const pickItemNode = createPickItemNode(
-            input,
-            nextLevel,
             current,
+            nextLevel,
+            input,
             groups,
         );
 
@@ -165,8 +174,8 @@ export function branchAndBound(
             lowerBoundValue = pickItemNode.value;
             pickedItems = pickItemNode.items;
         }
-
         // If we found a higher upper bound, search further
+
         if (pickItemNode.upperBound > lowerBoundValue) {
             queue.push(pickItemNode);
         }
@@ -181,6 +190,11 @@ export function branchAndBound(
     }
 
     return {
+        complexity: {
+            iterations,
+            max: 2 ** input.items.length,
+            ratio: iterations / 2 ** input.items.length,
+        },
         maxValue: lowerBoundValue,
         items: pickedItems,
     };

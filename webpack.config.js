@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -56,11 +56,7 @@ module.exports = env => ({
                 enforce: 'pre',
                 use: [
                     {
-                        loader: 'eslint-loader',
-                        options: {
-                            // Pass the formatter:
-                            formatter: eslintFormatter,
-                        },
+                        loader: 'eslint-loader'
                     },
                 ],
             },
