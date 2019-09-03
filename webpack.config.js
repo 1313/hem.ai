@@ -77,7 +77,7 @@ module.exports = env => ({
         new ManifestPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Hemsmart',
+            title: 'hem.ai',
             // Load a custom template (lodash by default)
             template: 'src/index.html',
         }),
