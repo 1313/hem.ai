@@ -12,10 +12,6 @@ interface BranchAndBoundInput {
     capacity: number;
 }
 
-function sortByValueWeightRatio(a: Item, b: Item): number {
-    return b.value / b.weight - a.value / a.weight;
-}
-
 export interface Node {
     items: Item[];
     value: number;
@@ -81,14 +77,13 @@ export function createPickItemNode(
 
     const groupItems = groups[item.group];
     if (groupItems.length > 1) {
-        let dupeMultiplier = 0;
-        const logCapacity = Math.log2(input.capacity);
         for (const groupItem of groupItems) {
             if (current.items.includes(groupItem)) {
-                dupeMultiplier += 2;
-                item.extraWeight = item.extraWeight || 0;
                 item.extraWeight =
-                    item.extraWeight + Math.round(logCapacity * dupeMultiplier);
+                    (item.weight / item.value + 1) *
+                    (item.weight / item.value + 1) *
+                    current.items.length *
+                    current.items.length;
             }
         }
     }
@@ -132,7 +127,6 @@ export function newStartNode(): Node {
 export function branchAndBound(
     input: BranchAndBoundInput,
 ): BranchAndBoundOutput {
-    input.items.sort(sortByValueWeightRatio);
     const groups = createGroups(input.items);
     let current: Node = newStartNode();
 

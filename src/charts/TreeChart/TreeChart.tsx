@@ -1,8 +1,6 @@
 import { TreeNode } from './types';
-import { createExecutionTree } from './logic';
 import * as d3 from 'd3';
 import ReactFauxDOM from 'react-faux-dom';
-import { Item } from '../../order-generator/KnapsackSolver';
 import { useWindowResize } from './windowResizeHook';
 import React, { useRef, useEffect, useState } from 'react';
 
@@ -103,7 +101,7 @@ function drawNodeCircles(
         .style('fill', 'white')
         .attr('cx', d => d.x)
         .attr('cy', d => d.y)
-        .attr('r', '1em');
+        .attr('r', '0.9em');
     textInCircle(nodeSelection, 'blue')
         .attr('dy', '-0.6em')
         .text(d => d.data.upperBound || '0');
@@ -115,11 +113,9 @@ function drawNodeCircles(
         .text(d => Math.round(d.data.weight * 100) / 100 || '0');
 }
 function TreeChart({
-    items,
-    capacity,
+    executionTree,
 }: {
-    items: Item[];
-    capacity: number;
+    executionTree: TreeNode;
 }): JSX.Element {
     const { height: innerHeight } = useWindowResize();
     const wrapperRef = useRef(null);
@@ -138,22 +134,13 @@ function TreeChart({
     const wrapper = ReactFauxDOM.createElement('svg');
     const svg = createSVG(layout, wrapper);
 
-    const { executionTree, result } = createExecutionTree(items, capacity);
-
     const treeLayout = createTreeLayout(layout, executionTree);
 
     drawLines(svg, treeLayout);
     drawNodeCircles(svg, treeLayout);
 
     return (
-        <div style={{ width: '100%' }} ref={wrapperRef}>
-            <h3>Maximum value: {result.maxValue}</h3>
-            <h3>
-                Execution: {result.complexity.iterations} /{' '}
-                {result.complexity.max} = {result.complexity.ratio}
-            </h3>
-            <h3>Optimal Items:</h3>
-            <pre>{JSON.stringify(result.items, null, '\t')}</pre>
+        <div ref={wrapperRef} style={{ width: '100%' }}>
             {wrapper.toReact()}
         </div>
     );

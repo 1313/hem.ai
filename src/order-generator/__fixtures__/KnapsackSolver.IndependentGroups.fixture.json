@@ -49,7 +49,7 @@
                 "value": 4
             }
         ],
-        "expectedValues": [60, 1, 10, 4],
+        "expectedValues": [1, 10, 60, 4],
         "optimalValue": 75
     },
     {
