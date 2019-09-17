@@ -62,7 +62,7 @@
         "react-dev-utils": "^9.0.3",
         "react-hot-loader": "^4.12.13",
         "ts-jest": "24.0.2",
-        "ts-loader": "^6.0.4",
+        "ts-loader": "^6.1.0",
         "typescript": "^3.6.2",
         "webpack-bundle-analyzer": "^3.5.0",
         "webpack-cli": "^3.3.9",
