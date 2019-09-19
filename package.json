@@ -59,7 +59,7 @@
         "jest": "24.9.0",
         "lint-staged": "^9.2.5",
         "prettier": "1.18.2",
-        "react-dev-utils": "^9.0.3",
+        "react-dev-utils": "^9.0.4",
         "react-hot-loader": "^4.12.13",
         "ts-jest": "24.1.0",
         "ts-loader": "^6.1.0",
