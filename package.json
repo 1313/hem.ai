@@ -64,7 +64,7 @@
         "ts-jest": "24.1.0",
         "ts-loader": "^6.1.0",
         "typescript": "^3.6.3",
-        "webpack-bundle-analyzer": "^3.5.0",
+        "webpack-bundle-analyzer": "^3.5.2",
         "webpack-cli": "^3.3.9",
         "webpack-dev-server": "^3.8.1",
         "webpack-manifest-plugin": "^2.0.4",
