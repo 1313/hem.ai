@@ -28,6 +28,8 @@ css`
   }
   body {
     margin: 0;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
   }
   h1,
   h2,
