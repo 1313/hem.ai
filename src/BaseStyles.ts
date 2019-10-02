@@ -101,12 +101,13 @@ css`
     border: 1px solid ${theme.colors.text};
   }
   .app {
+    height: 100vh;
     display: flex;
+    flex-direction: column-reverse;
   }
   main {
-    height: 100vh;
     overflow: auto;
-    flex: 1;
+    flex: 1 0;
     padding: var(--s0) var(--s-1);
   }
 
@@ -115,7 +116,7 @@ css`
     flex: 0 0 var(--s5);
     display: inline-flex;
     height: 100vh;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px,
       rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 3px 3px -2px;
@@ -149,5 +150,13 @@ css`
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
       rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
     padding: var(--s0) var(--s-1);
+  }
+  @media (min-width: 600px) {
+    .app {
+      flex-direction: row;
+    }
+    nav {
+      flex-direction: column;
+    }
   }
 `;

@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 export function Navigation(): JSX.Element {
   return (
     <motion.nav
-      initial={{ x: '-100%' }}
-      animate={{ x: '0' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
     >
       <NavLink exact to="/">

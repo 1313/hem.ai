@@ -65,7 +65,7 @@ export function DebugView(): JSX.Element {
         </label>
         <button
           type="button"
-          onClick={(): void => setItems(JSON.stringify(items, null, '\t'))}
+          onClick={(): void => setItems(JSON.stringify(items, null, 2))}
         >
           Format
         </button>

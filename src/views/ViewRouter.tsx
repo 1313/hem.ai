@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { DebugView } from './Debug';
 
 const layoutTransition = {
-  initial: { y: '-100%', opacity: 0 },
+  initial: { x: '-100%', opacity: 0 },
   animate: {
-    y: 0,
+    x: 0,
     opacity: 1,
     transition: {
       duration: 0.25,
@@ -14,7 +14,7 @@ const layoutTransition = {
     },
   },
   exit: {
-    y: '100%',
+    x: '100%',
     opacity: 0,
 
     transition: {
