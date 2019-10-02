@@ -1,5 +1,5 @@
 import { IngredientModel } from './IngredientModel';
 
 export const IngredientsStore: IngredientModel[] = [
-    { name: 'Tomato', cost: 0 },
+  { name: 'Tomato', cost: 0 },
 ];

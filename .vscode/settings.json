@@ -1,23 +1,26 @@
 {
-    "eslint.autoFixOnSave": false,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        { "language": "typescript", "autoFix": true },
-        { "language": "typescriptreact", "autoFix": true }
-    ],
-    "javascript.validate.enable": false,
-    "editor.formatOnSave": true,
+  "editor.formatOnSave": true,
 
-    "cSpell.words": [
-        "Groupable",
-        "groupables",
-        "hemsmart",
-        "lcov",
-        "prebuild",
-        "precoverage",
-        "sonarjs",
-        "tinyqueue"
-    ],
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "cSpell.words": [
+    "Groupable",
+    "Matdotse",
+    "algoliasearch",
+    "groupables",
+    "hemsmart",
+    "lcov",
+    "prebuild",
+    "precoverage",
+    "sonarjs",
+    "tinyqueue"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ],
+  "files.exclude": {
+    "**/node_modules/**": true
+  }
 }

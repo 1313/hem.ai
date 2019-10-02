@@ -1,5 +1,11 @@
 {
     "compilerOptions": {
+        "plugins": [
+            {
+                "name": "typescript-styled-plugin",
+                "tags": ["styled", "css", "injectGlobal"]
+            }
+        ],
         "allowSyntheticDefaultImports": true,
         "target": "es5",
         "downlevelIteration": true,
