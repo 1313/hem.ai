@@ -111,6 +111,8 @@ css`
   main {
     overflow: auto;
     flex: 1;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
     padding: var(--s0) var(--s-1);
   }
 
