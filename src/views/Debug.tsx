@@ -17,9 +17,6 @@ const Grid = styled.div`
   display: grid;
   grid-gap: var(--s-1);
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  > *:last-child {
-    grid-column: span 2;
-  }
 `;
 
 export function DebugView(): JSX.Element {
