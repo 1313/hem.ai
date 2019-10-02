@@ -102,20 +102,21 @@ css`
   }
   .app {
     height: 100vh;
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: column-reverse;
   }
   main {
     overflow: auto;
-    flex: 1 0;
+    flex: 1;
     padding: var(--s0) var(--s-1);
   }
 
   nav {
     color: ${theme.colors.secondaryText};
-    flex: 0 0 var(--s5);
-    display: inline-flex;
-    height: 100vh;
+    flex: 0 0 auto;
+    display: flex;
+
     flex-direction: row;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px,
@@ -126,7 +127,7 @@ css`
     }
     a {
       transition: background-color 100ms ease-in-out;
-
+      &:hover,
       &:active,
       &.active {
         transition-duration: 250ms;
@@ -140,6 +141,7 @@ css`
       font-size: var(--s-1);
       padding: var(--s-5) var(--s-2);
       width: 100%;
+
       display: flex;
       align-items: center;
       flex-direction: column;
