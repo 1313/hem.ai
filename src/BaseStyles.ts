@@ -26,6 +26,12 @@ css`
     font-family: 'Open Sans', sans-serif;
     color: ${theme.colors.text};
   }
+  html,
+  body,
+  #root,
+  .app {
+    height: 100%;
+  }
   body {
     margin: 0;
     scroll-behavior: smooth;
@@ -103,8 +109,6 @@ css`
     border: 1px solid ${theme.colors.text};
   }
   .app {
-    height: 100vh;
-    height: -webkit-fill-available;
     display: flex;
     flex-direction: column-reverse;
   }
