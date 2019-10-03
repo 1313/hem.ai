@@ -2,22 +2,61 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { HomeOutlined, BugReportOutlined } from '@material-ui/icons';
 import { motion } from 'framer-motion';
+import { darken } from 'polished';
+import { styled } from '../theme';
+
+const NavigationLink = styled(NavLink)`
+  transition: background-color 100ms ease-in-out;
+  &:hover,
+  &:active,
+  &.active {
+    transition-duration: 250ms;
+    background-color: ${props => darken(0.1, props.theme.color.primary)};
+    color: inherit;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+  font-size: var(--s-1);
+  padding: var(--s-5) var(--s-2);
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+const NavigationWrapper = styled(motion.nav)`
+  color: ${({ theme }) => theme.color.secondaryText};
+  flex: 0 0 auto;
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px,
+    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 3px 3px -2px;
+  background-color: ${({ theme }) => theme.color.primary};
+
+  @media (${({ theme }) => theme.breakpoints.small}) {
+    flex-direction: column;
+  }
+`;
 
 export function Navigation(): JSX.Element {
   return (
-    <motion.nav
+    <NavigationWrapper
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
     >
-      <NavLink exact to="/">
+      <NavigationLink exact to="/">
         <HomeOutlined className="icon" />
         Home
-      </NavLink>
-      <NavLink exact to="/debug">
+      </NavigationLink>
+      <NavigationLink exact to="/debug">
         <BugReportOutlined className="icon" />
         Debug
-      </NavLink>
-    </motion.nav>
+      </NavigationLink>
+    </NavigationWrapper>
   );
 }

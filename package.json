@@ -62,7 +62,7 @@
     "jest-runner-eslint": "0.7.4",
     "lint-staged": "^9.4.1",
     "prettier": "1.18.2",
-    "react-dev-utils": "^9.0.4",
+    "react-dev-utils": "^9.1.0",
     "react-hot-loader": "^4.12.14",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
@@ -75,7 +75,7 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.17",
+    "@emotion/core": "^10.0.20",
     "@emotion/styled": "^10.0.17",
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",

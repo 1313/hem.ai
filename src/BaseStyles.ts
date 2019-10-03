@@ -1,5 +1,5 @@
 import { injectGlobal as css } from 'emotion';
-import { darken } from 'polished';
+
 import { theme } from './theme';
 
 css`
@@ -24,12 +24,11 @@ css`
 
     font-size: calc(0.5vw + 12px);
     font-family: 'Open Sans', sans-serif;
-    color: ${theme.colors.text};
+    color: ${theme.color.text};
   }
   html,
   body,
-  #root,
-  .app {
+  #root {
     height: 100%;
   }
   body {
@@ -78,17 +77,16 @@ css`
   a {
     text-decoration: none;
     &:hover {
-      color: ${theme.colors.primary};
+      color: ${theme.color.primary};
     }
   }
 
-  button,
-  a.link-button {
-    background-color: ${theme.colors.secondaryText};
-    color: ${theme.colors.text};
+  button {
+    background-color: ${theme.color.secondaryText};
+    color: ${theme.color.text};
     &[variant='primary'] {
-      background-color: ${theme.colors.primary};
-      color: ${theme.colors.secondaryText};
+      background-color: ${theme.color.primary};
+      color: ${theme.color.secondaryText};
     }
     &:active {
       box-shadow: none;
@@ -96,6 +94,7 @@ css`
     }
     transition: box-shadow 100ms ease-in-out;
     border-radius: 2px;
+    border: 1px solid ${theme.color.text};
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
       rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
     padding: var(--s-4) var(--s-3);
@@ -106,67 +105,14 @@ css`
   input {
     border-radius: 2px;
     padding: var(--s-5) var(--s-4);
-    border: 1px solid ${theme.colors.text};
+    border: 1px solid ${theme.color.text};
   }
-  .app {
-    display: flex;
-    flex-direction: column-reverse;
-  }
+
   main {
     overflow: auto;
     flex: 1;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     padding: var(--s0) var(--s-1);
-  }
-
-  nav {
-    color: ${theme.colors.secondaryText};
-    flex: 0 0 auto;
-    display: flex;
-
-    flex-direction: row;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px,
-      rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 3px 3px -2px;
-    background-color: ${theme.colors.primary};
-    .icon {
-      font-size: var(--s4);
-    }
-    a {
-      transition: background-color 100ms ease-in-out;
-      &:hover,
-      &:active,
-      &.active {
-        transition-duration: 250ms;
-        background-color: ${darken(0.1, theme.colors.primary)};
-        color: inherit;
-      }
-
-      &:visited {
-        color: inherit;
-      }
-      font-size: var(--s-1);
-      padding: var(--s-5) var(--s-2);
-      width: 100%;
-
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
-  }
-
-  div.paper {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
-      rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
-    padding: var(--s0) var(--s-1);
-  }
-  @media (min-width: 600px) {
-    .app {
-      flex-direction: row;
-    }
-    nav {
-      flex-direction: column;
-    }
   }
 `;
