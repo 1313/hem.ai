@@ -119,5 +119,8 @@ css`
   }
   img {
     max-width: 100%;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
   }
 `;
