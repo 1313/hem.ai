@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { HomeOutlined, BugReportOutlined } from '@material-ui/icons';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
+
 import { styled } from '../theme';
+import { HomeIcon } from '../icons/Home';
+import { SettingsIcon } from '../icons/Settings';
 
 const NavigationLink = styled(NavLink)`
   transition: background-color 100ms ease-in-out;
@@ -50,11 +52,11 @@ export function Navigation(): JSX.Element {
       transition={{ duration: 0.25 }}
     >
       <NavigationLink exact to="/">
-        <HomeOutlined className="icon" />
+        <HomeIcon />
         Home
       </NavigationLink>
       <NavigationLink exact to="/debug">
-        <BugReportOutlined className="icon" />
+        <SettingsIcon />
         Debug
       </NavigationLink>
     </NavigationWrapper>

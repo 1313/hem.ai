@@ -19,7 +19,8 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 `;
 
-export function DebugView(): JSX.Element {
+// eslint-disable-next-line import/no-default-export
+export default function DebugView(): JSX.Element {
   const [capacity, setCapacity] = useState('10');
   const [itemString, setItems] = useState(JSON.stringify(defaultItems));
   let items: [number, number, number?][] = [];
