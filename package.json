@@ -77,7 +77,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.20",
     "@emotion/styled": "^10.0.17",
-    "@types/algoliasearch": "^3.34.2",
+    "@types/algoliasearch": "^3.34.3",
     "@types/axios": "^0.14.0",
     "@types/d3": "^5.7.2",
     "@types/react-faux-dom": "^4.1.3",
