@@ -107,12 +107,17 @@ css`
     padding: var(--s-5) var(--s-4);
     border: 1px solid ${theme.color.text};
   }
-
+  main * + * {
+    margin-top: var(--s-2);
+  }
   main {
     overflow: auto;
     flex: 1;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     padding: var(--s0) var(--s-1);
+  }
+  img {
+    max-width: 100%;
   }
 `;

@@ -58,6 +58,7 @@ module.exports = {
         "react/jsx-filename-extension": ['error', { "extensions": [".ts", ".tsx"] }],
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
+        "global-require": "off",
         "prettier/prettier": "error"
     },
 };

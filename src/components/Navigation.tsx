@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { darken } from 'polished';
 
 import { styled } from '../theme';
-import { HomeIcon } from '../icons/Home';
-import { SettingsIcon } from '../icons/Settings';
+import { HomeIcon } from '../icons/HomeIcon';
+import { SettingsIcon } from '../icons/SettingsIcon';
 
 const NavigationLink = styled(NavLink)`
   transition: background-color 100ms ease-in-out;

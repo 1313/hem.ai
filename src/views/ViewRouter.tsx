@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-
-const DebugView = React.lazy(() => import('./Debug'));
+import HomeView from './HomeView';
+import DebugView from './DebugView';
 
 const layoutTransition = {
   initial: { x: '-100%', opacity: 0 },
@@ -40,9 +40,7 @@ export function ViewRouter(): JSX.Element {
                     className="view"
                     {...layoutTransition}
                   >
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <DebugView />
-                    </Suspense>
+                    <DebugView />
                   </motion.div>
                 )}
               />
@@ -50,7 +48,7 @@ export function ViewRouter(): JSX.Element {
                 path="/"
                 render={() => (
                   <motion.div key="/" className="view" {...layoutTransition}>
-                    <h1>Home</h1>
+                    <HomeView />
                   </motion.div>
                 )}
               />
