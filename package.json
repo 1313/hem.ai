@@ -94,7 +94,7 @@
     "google-fonts-webpack-plugin": "^0.4.4",
     "polished": "^3.4.1",
     "querystring": "^0.2.0",
-    "react": "^16.10.1",
+    "react": "^16.10.2",
     "react-dom": "^16.10.1",
     "react-faux-dom": "^4.5.0",
     "react-router": "^5.1.2",
