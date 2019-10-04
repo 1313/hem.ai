@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 // import algoliasearch, { Index, Response } from 'algoliasearch';
-import axios, { AxiosResponse, AxiosInstance } from 'axios';
+import axios, { AxiosResponse, AxiosInstance, AxiosError } from 'axios';
 import setCookieParser from 'set-cookie-parser';
 import querystring from 'querystring';
 
@@ -38,7 +38,7 @@ export class MatSe {
           },
         },
       )
-      .catch(error => error.response);
+      .catch((error: AxiosError) => error.response);
 
     return axios.create({
       baseURL: 'https://www.mat.se',
