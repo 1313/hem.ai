@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { TreeChart } from '../components/TreeChart';
 import { createExecutionTree } from '../components/TreeChart/logic';
 import { Paper } from '../components/Paper';
-import { Grid } from '../components/Grid';
+import { List } from '../components/List';
 
 const defaultItems: [number, number, number?][] = [
   [1, 1],
@@ -32,7 +32,7 @@ export default function DebugView(): JSX.Element {
   }));
   const { executionTree, result } = createExecutionTree(mappedItems, +capacity);
   return (
-    <Grid>
+    <List>
       <Paper>
         <label htmlFor="capacity">
           Capacity:
@@ -78,6 +78,6 @@ export default function DebugView(): JSX.Element {
       <Paper>
         <TreeChart executionTree={executionTree} />
       </Paper>
-    </Grid>
+    </List>
   );
 }

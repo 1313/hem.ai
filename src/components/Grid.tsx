@@ -1,11 +1,11 @@
 import { styled } from '../theme';
 
 export const Grid = styled.div`
-  width: auto;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 calc(var(--s-4) * -1);
   > * {
-    margin: var(--s-5);
-    flex: 1 1 320px;
+    margin: var(--s-4);
+    flex: 1 1 20rem;
   }
 `;

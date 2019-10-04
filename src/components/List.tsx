@@ -11,13 +11,13 @@ const listWrapperAnimation = {
 
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.4,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemAnimation = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 50, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -26,10 +26,16 @@ const itemAnimation = {
 const ListWrapper = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
+  margin: 0 calc(var(--s-4) * -1);
 `;
 const ListItemWrapper = styled(motion.div)`
-  flex: 1 1 20rem;
-  margin: var(--s-2);
+  flex: 1 1 25rem;
+  margin: var(--s-4);
+  display: flex;
+
+  > * {
+    flex: 1 1 auto;
+  }
 `;
 type ListProps = Omit<HTMLProps<HTMLDivElement>, keyof MotionProps | 'ref'>;
 export const List = ({ children, ...props }: ListProps): JSX.Element => (

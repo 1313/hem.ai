@@ -115,7 +115,7 @@ css`
     flex: 1;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    padding: var(--s0) var(--s-1);
+    padding: var(--s-2) var(--s0);
   }
   img {
     max-width: 100%;
