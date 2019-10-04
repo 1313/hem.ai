@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { TreeChart } from '../components/TreeChart';
 import { createExecutionTree } from '../components/TreeChart/logic';
 import { Paper } from '../components/Paper';
+import { Grid } from '../components/Grid';
 
 const defaultItems: [number, number, number?][] = [
   [1, 1],
@@ -11,13 +12,6 @@ const defaultItems: [number, number, number?][] = [
   [4, 4],
   [4, 4],
 ];
-
-const Grid = styled.div`
-  width: auto;
-  display: grid;
-  grid-gap: var(--s-1);
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-`;
 
 // eslint-disable-next-line import/no-default-export
 export default function DebugView(): JSX.Element {
