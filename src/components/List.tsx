@@ -29,7 +29,7 @@ const ListWrapper = styled(motion.div)`
   margin: 0 calc(var(--s-4) * -1);
 `;
 const ListItemWrapper = styled(motion.div)`
-  flex: 1 1 25rem;
+  flex: 1 1 20rem;
   margin: var(--s-4);
   display: flex;
 
