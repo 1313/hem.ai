@@ -27,7 +27,7 @@ const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
       <ItemCard key={`${item.group}-${item.weight}-${item.value}`}>
         <p>Weight: {item.weight}</p>
         {!!item.extraWeight && (
-          <p>Extra weight: {Math.round(item.extraWeight, 2)}</p>
+          <p>Extra weight: {Math.round(item.extraWeight)}</p>
         )}
         <p>Value: {item.value}</p>
         <p>Group: {item.group}</p>
