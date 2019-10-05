@@ -24,10 +24,7 @@ interface ItemListProps {
 const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
   <List>
     {items.map(item => (
-      <ItemCard
-        // eslint-disable-next-line react/no-array-index-key
-        key={JSON.stringify(item)}
-      >
+      <ItemCard key={`${item.group}-${item.weight}-${item.value}`}>
         <p>Weight: {item.weight}</p>
         {!!item.extraWeight && (
           <p>Extra weight: {Math.round(item.extraWeight, 2)}</p>
