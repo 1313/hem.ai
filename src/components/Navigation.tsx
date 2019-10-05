@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { darken } from 'polished';
+import { lighten } from 'polished';
 
 import { styled } from '../theme';
 import { HomeIcon } from '../icons/HomeIcon';
@@ -13,7 +13,7 @@ const NavigationLink = styled(NavLink)`
   &:active,
   &.active {
     transition-duration: 250ms;
-    background-color: ${props => darken(0.1, props.theme.color.primary)};
+    background-color: ${props => lighten(0.1, props.theme.color.primary)};
     color: inherit;
   }
 
@@ -29,7 +29,7 @@ const NavigationLink = styled(NavLink)`
   flex-direction: column;
 `;
 const NavigationWrapper = styled(motion.nav)`
-  color: ${({ theme }) => theme.color.secondaryText};
+  color: ${({ theme }) => theme.color.text};
   flex: 0 0 auto;
   display: flex;
 

@@ -14,7 +14,7 @@ function createSVG(
 
       // Class to make it responsive.
       .attr('preserveAspectRatio', 'xMinYMin meet')
-      .attr('viewBox', '0 0 800 800')
+      .attr('viewBox', '0 0 800 500')
       .classed('svg-content-responsive', true)
       .append('g')
       .attr('transform', `translate(25,25)`)
@@ -23,7 +23,7 @@ function createSVG(
 function createTreeLayout(
   executionTree: TreeNode,
 ): d3.HierarchyPointNode<TreeNode> {
-  const treeLayout = d3.tree().size([800, 750]);
+  const treeLayout = d3.tree().size([800, 450]);
   const hierarchyRoot = d3.hierarchy(executionTree);
   treeLayout(hierarchyRoot);
   return hierarchyRoot as d3.HierarchyPointNode<TreeNode>;

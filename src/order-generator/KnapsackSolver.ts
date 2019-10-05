@@ -71,9 +71,10 @@ function calculateExtraWeight(
   groups: Groups<Item>,
   item: Item,
   current: Node,
-): number | undefined {
+): number {
   let extraWeight = 0;
   const groupItems = groups[item.group];
+
   if (groupItems.length > 1) {
     groupItems.forEach(groupItem => {
       if (current.items.includes(groupItem)) {
@@ -97,13 +98,11 @@ export function createPickItemNode(
   // Take the next item, increase weight and value item
   const item = items[nextLevel];
 
+  item.extraWeight = calculateExtraWeight(groups, item, current);
   const node = {
     ...current,
     level: nextLevel,
-    weight:
-      current.weight +
-      item.weight +
-      calculateExtraWeight(groups, item, current),
+    weight: current.weight + item.weight + item.extraWeight,
     value: current.value + item.value,
     items: [...current.items, item],
   };

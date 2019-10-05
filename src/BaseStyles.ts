@@ -32,17 +32,19 @@ css`
     height: 100%;
   }
   body {
+    background-color: ${theme.color.background};
     margin: 0;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
   }
+  p,
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    margin-top: 0;
+    margin: 0;
   }
   h1 {
     font-size: var(--s5);
@@ -80,10 +82,12 @@ css`
       color: ${theme.color.primary};
     }
   }
-
+  button + button {
+    margin-left: var(--s-5);
+  }
   button {
-    background-color: ${theme.color.secondaryText};
-    color: ${theme.color.text};
+    background-color: ${theme.color.text};
+    color: ${theme.color.secondaryText};
     &[variant='primary'] {
       background-color: ${theme.color.primary};
       color: ${theme.color.secondaryText};
@@ -94,7 +98,7 @@ css`
     }
     transition: box-shadow 100ms ease-in-out;
     border-radius: 2px;
-    border: 1px solid ${theme.color.text};
+    border: 1px currentColor ${theme.color.text};
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
       rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
     padding: var(--s-4) var(--s-3);
@@ -108,19 +112,45 @@ css`
     border: 1px solid ${theme.color.text};
   }
   main * + * {
-    margin-top: var(--s-2);
+    margin-top: var(--s-5);
   }
   main {
     overflow: auto;
     flex: 1;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    padding: var(--s-2) var(--s0);
+    padding: 0 var(--s0);
   }
   img {
     max-width: 100%;
     object-fit: contain;
     display: inline-block;
     vertical-align: middle;
+  }
+  label {
+    display: inline-block;
+    * + * {
+      margin-top: var(--s-5);
+    }
+    width: 100%;
+  }
+  textarea,
+  input {
+    width: 100%;
+    padding: var(--s-5) var(--s-4);
+    border: 1px solid currentColor;
+    border-radius: 4px;
+  }
+  button,
+  textarea,
+  input,
+  select {
+    transition: box-shadow 250ms ease-in-out;
+
+    &:focus {
+      outline: none;
+
+      box-shadow: ${theme.color.clickable} 0px 0px 2px 2px;
+    }
   }
 `;
