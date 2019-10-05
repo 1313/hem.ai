@@ -121,6 +121,9 @@ css`
     scroll-behavior: smooth;
     padding: 0 var(--s0);
   }
+  [disabled] {
+    opacity: 0.5;
+  }
   img {
     max-width: 100%;
     object-fit: contain;

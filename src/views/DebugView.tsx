@@ -56,14 +56,8 @@ export default function DebugView(): JSX.Element {
       value: +inputValue,
       group: inputGroup,
     };
-    if (
-      !items.find(
-        ({ weight, value, group }) =>
-          JSON.stringify({ weight, value, group }) === JSON.stringify(newItem),
-      )
-    ) {
-      setItems([newItem, ...items]);
-    }
+
+    setItems([newItem, ...items]);
   };
 
   return (
@@ -100,7 +94,17 @@ export default function DebugView(): JSX.Element {
               id="group"
               onChange={e => setGroup(e.target.value)}
             />
-            <button type="button" onClick={createNewItem}>
+            <button
+              disabled={
+                !!items.find(
+                  ({ weight, value, group }) =>
+                    `${weight}-${value}-${group}` ===
+                    `${inputWeight}-${inputValue}-${inputGroup}`,
+                )
+              }
+              type="button"
+              onClick={createNewItem}
+            >
               Add Item
             </button>
             <button type="button" onClick={() => setItems([])}>
