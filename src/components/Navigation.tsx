@@ -6,6 +6,7 @@ import { lighten } from 'polished';
 import { styled } from '../theme';
 import { HomeIcon } from '../icons/HomeIcon';
 import { SettingsIcon } from '../icons/SettingsIcon';
+import { RecipeIcon } from '../icons/RecipeIcon';
 
 const NavigationLink = styled(NavLink)`
   transition: background-color 100ms ease-in-out;
@@ -54,6 +55,10 @@ export function Navigation(): JSX.Element {
       <NavigationLink exact to="/">
         <HomeIcon />
         Home
+      </NavigationLink>
+      <NavigationLink exact to="/recipes">
+        <RecipeIcon />
+        Recipes
       </NavigationLink>
       <NavigationLink exact to="/debug">
         <SettingsIcon />

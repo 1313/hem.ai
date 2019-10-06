@@ -56,7 +56,7 @@ module.exports = {
         "import/prefer-default-export": 'off',
         "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error", {
+        "@typescript-eslint/no-unused-vars": ["warn", {
             "ignoreRestSiblings": true
         }],
         "react/jsx-filename-extension": ['error', { "extensions": [".ts", ".tsx"] }],

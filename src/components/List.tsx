@@ -52,10 +52,9 @@ export const List = ({ children, ...props }: ListProps): JSX.Element => (
     <AnimatePresence>
       {React.Children.map(
         children as ReactNodeWithKey[],
-        (child: ReactNodeWithKey) => (
+        (child: ReactNodeWithKey, index: number) => (
           <ListItemWrapper
-            positionTransition
-            key={child.key}
+            key={child.key || index}
             exit="exit"
             variants={itemAnimation}
           >

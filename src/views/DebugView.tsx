@@ -9,6 +9,7 @@ import { Card } from '../components/Card';
 import { styled } from '../theme';
 import { Item } from '../order-generator/KnapsackSolver';
 import { Grid } from '../components/Grid';
+import { View } from '../components/View';
 
 const Row = styled.div`
   display: flex;
@@ -78,7 +79,7 @@ export default function DebugView(): JSX.Element {
   const { executionTree, result } = createExecutionTree(items, +capacity);
 
   return (
-    <>
+    <View>
       <h2>Knapsack solver</h2>
       <Grid>
         <DebugCard>
@@ -148,6 +149,6 @@ export default function DebugView(): JSX.Element {
           <TreeChart executionTree={executionTree} />
         </DebugCard>
       </Grid>
-    </>
+    </View>
   );
 }
