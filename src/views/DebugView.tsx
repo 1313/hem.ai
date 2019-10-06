@@ -9,7 +9,6 @@ import { Card } from '../components/Card';
 import { styled } from '../theme';
 import { Item } from '../order-generator/KnapsackSolver';
 import { Grid } from '../components/Grid';
-import { Paper } from '../components/Paper';
 
 const Row = styled.div`
   display: flex;
@@ -24,6 +23,18 @@ const Row = styled.div`
   }
 `;
 const ItemCard = styled(Card)`
+  padding: var(--s-3);
+  position: relative;
+  white-space: nowrap;
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    border: none;
+  }
+`;
+const DebugCard = styled(Card)`
   padding: var(--s-3);
   display: flex;
   flex-direction: column;
@@ -40,15 +51,11 @@ const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
   <List>
     {items.map((item, index) => (
       <ItemCard key={itemKey(item)}>
-        <p>Weight: {item.weight}</p>
-        {!!item.extraWeight && (
-          <p>Extra weight: {Math.round(item.extraWeight)}</p>
-        )}
-        <p>Value: {item.value}</p>
-        <p>Group: {item.group}</p>
+        {item.weight} / {!!item.extraWeight && Math.round(item.extraWeight)}
+        {item.value} / {item.group}
         {onRemove && (
           <button type="button" onClick={() => onRemove(index)}>
-            Remove
+            X
           </button>
         )}
       </ItemCard>
@@ -61,7 +68,7 @@ export default function DebugView(): JSX.Element {
   const [capacity, setCapacity] = useState('10');
   const [weight, setWeight] = useState('1');
   const [value, setValue] = useState('5');
-  const [group, setGroup] = useState('GROUP 1');
+  const [group, setGroup] = useState('1');
   const [items, setItems] = useState<Item[]>([]);
   const newItem = {
     weight: +weight,
@@ -74,7 +81,7 @@ export default function DebugView(): JSX.Element {
     <>
       <h2>Knapsack solver</h2>
       <Grid>
-        <ItemCard>
+        <DebugCard>
           <Row>
             <TextInput
               label="Budget:"
@@ -126,9 +133,9 @@ export default function DebugView(): JSX.Element {
               setItems(newItems);
             }}
           />
-        </ItemCard>
+        </DebugCard>
 
-        <ItemCard>
+        <DebugCard>
           <p>
             Maximum value: {result.maxValue} | Execution ratio:{' '}
             {result.complexity.iterations}/{result.complexity.max}=
@@ -136,10 +143,10 @@ export default function DebugView(): JSX.Element {
           </p>
           <p>Optimal Items:</p>
           <ItemList items={result.items} />
-        </ItemCard>
-        <ItemCard>
+        </DebugCard>
+        <DebugCard>
           <TreeChart executionTree={executionTree} />
-        </ItemCard>
+        </DebugCard>
       </Grid>
     </>
   );
