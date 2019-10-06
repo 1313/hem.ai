@@ -18,12 +18,12 @@ const ItemCard = styled(Card)`
 
 interface ItemListProps {
   items: Item[];
-  onRemove?: (item: Item) => void;
+  onRemove?: (itemIndex: number) => void;
 }
 
 const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
   <List>
-    {items.map(item => (
+    {items.map((item, index) => (
       <ItemCard key={`${item.group}-${item.weight}-${item.value}`}>
         <p>Weight: {item.weight}</p>
         {!!item.extraWeight && (
@@ -32,7 +32,7 @@ const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
         <p>Value: {item.value}</p>
         <p>Group: {item.group}</p>
         {onRemove && (
-          <button type="button" onClick={() => onRemove(item)}>
+          <button type="button" onClick={() => onRemove(index)}>
             Remove
           </button>
         )}
@@ -117,9 +117,9 @@ export default function DebugView(): JSX.Element {
               value,
               group,
             }))}
-            onRemove={item => {
+            onRemove={itemIndex => {
               const newItems = [...items];
-              newItems.splice(items.indexOf(item), 1);
+              newItems.splice(itemIndex, 1);
               setItems(newItems);
             }}
           />
