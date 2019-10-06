@@ -55,6 +55,10 @@ module.exports = {
         "import/no-default-export": 'error',
         "import/prefer-default-export": 'off',
         "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", {
+            "ignoreRestSiblings": true
+        }],
         "react/jsx-filename-extension": ['error', { "extensions": [".ts", ".tsx"] }],
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],

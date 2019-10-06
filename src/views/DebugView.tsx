@@ -11,10 +11,26 @@ import { Item } from '../order-generator/KnapsackSolver';
 import { Grid } from '../components/Grid';
 import { Paper } from '../components/Paper';
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  > * {
+    flex: 1;
+  }
+  > * + * {
+    margin: 0;
+    margin-left: var(--s-3);
+  }
+`;
 const ItemCard = styled(Card)`
   padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
 `;
-
+function itemKey(item: Item): string {
+  return `${item.group}-${item.weight}-${item.value}`;
+}
 interface ItemListProps {
   items: Item[];
   onRemove?: (itemIndex: number) => void;
@@ -23,7 +39,7 @@ interface ItemListProps {
 const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
   <List>
     {items.map((item, index) => (
-      <ItemCard key={`${item.group}-${item.weight}-${item.value}`}>
+      <ItemCard key={itemKey(item)}>
         <p>Weight: {item.weight}</p>
         {!!item.extraWeight && (
           <p>Extra weight: {Math.round(item.extraWeight)}</p>
@@ -43,87 +59,76 @@ const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
 // eslint-disable-next-line import/no-default-export
 export default function DebugView(): JSX.Element {
   const [capacity, setCapacity] = useState('10');
-  const [inputWeight, setWeight] = useState('1');
-  const [inputValue, setValue] = useState('5');
-  const [inputGroup, setGroup] = useState('GROUP 1');
+  const [weight, setWeight] = useState('1');
+  const [value, setValue] = useState('5');
+  const [group, setGroup] = useState('GROUP 1');
   const [items, setItems] = useState<Item[]>([]);
-
-  const { executionTree, result } = createExecutionTree(items, +capacity);
-  const createNewItem = (): void => {
-    const newItem = {
-      weight: +inputWeight,
-      value: +inputValue,
-      group: inputGroup,
-    };
-
-    setItems([newItem, ...items]);
+  const newItem = {
+    weight: +weight,
+    value: +value,
+    group,
   };
+  const { executionTree, result } = createExecutionTree(items, +capacity);
 
   return (
     <>
       <h2>Knapsack solver</h2>
       <Grid>
-        <Paper>
-          <TextInput
-            label="Budget:"
-            id="budget"
-            type="number"
-            value={capacity}
-            onChange={({ target }): void => setCapacity(target.value)}
-          />
-
-          <ItemCard>
+        <ItemCard>
+          <Row>
             <TextInput
-              value={inputWeight}
+              label="Budget:"
+              id="budget"
+              type="number"
+              value={capacity}
+              onChange={({ target }): void => setCapacity(target.value)}
+            />
+            <TextInput
+              value={weight}
               label="Weight:"
               id="weight"
               type="number"
               onChange={e => setWeight(e.target.value)}
             />
             <TextInput
-              value={inputValue}
+              value={value}
               label="Value:"
               id="value"
               type="number"
               onChange={e => setValue(e.target.value)}
             />
             <TextInput
-              value={inputGroup}
+              value={group}
               label="Group:"
               id="group"
               onChange={e => setGroup(e.target.value)}
             />
+          </Row>
+          <Row>
             <button
               disabled={
-                !!items.find(
-                  ({ weight, value, group }) =>
-                    `${weight}-${value}-${group}` ===
-                    `${inputWeight}-${inputValue}-${inputGroup}`,
-                )
+                !!items.find(item => itemKey(item) === itemKey(newItem))
               }
               type="button"
-              onClick={createNewItem}
+              onClick={() => setItems([newItem, ...items])}
             >
               Add Item
             </button>
             <button type="button" onClick={() => setItems([])}>
               Clear
             </button>
-          </ItemCard>
+          </Row>
           <ItemList
-            items={items.map(({ weight, value, group }) => ({
-              weight,
-              value,
-              group,
-            }))}
+            items={items.map(({ extraWeight, ...item }) => item)}
             onRemove={itemIndex => {
               const newItems = [...items];
               newItems.splice(itemIndex, 1);
               setItems(newItems);
             }}
           />
-        </Paper>
-        <Paper>
+        </ItemCard>
+
+        <ItemCard>
           <p>
             Maximum value: {result.maxValue} | Execution ratio:{' '}
             {result.complexity.iterations}/{result.complexity.max}=
@@ -131,10 +136,10 @@ export default function DebugView(): JSX.Element {
           </p>
           <p>Optimal Items:</p>
           <ItemList items={result.items} />
-        </Paper>
-        <Paper>
+        </ItemCard>
+        <ItemCard>
           <TreeChart executionTree={executionTree} />
-        </Paper>
+        </ItemCard>
       </Grid>
     </>
   );
