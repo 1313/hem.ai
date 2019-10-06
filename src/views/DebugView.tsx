@@ -13,7 +13,6 @@ import { Paper } from '../components/Paper';
 
 const ItemCard = styled(Card)`
   padding: var(--s-3);
-  flex: 0;
 `;
 
 interface ItemListProps {

@@ -86,6 +86,9 @@ css`
     margin-left: var(--s-5);
   }
   button {
+    &:hover {
+      cursor: pointer;
+    }
     background-color: ${theme.color.text};
     color: ${theme.color.secondaryText};
     &[variant='primary'] {
