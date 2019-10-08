@@ -63,7 +63,7 @@
     "lint-staged": "^9.4.1",
     "prettier": "1.18.2",
     "react-dev-utils": "^9.1.0",
-    "react-hot-loader": "^4.12.14",
+    "react-hot-loader": "^4.12.15",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
     "typescript": "^3.6.3",
