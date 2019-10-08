@@ -89,7 +89,7 @@
     "d3": "^5.12.0",
     "emotion": "^10.0.17",
     "emotion-theming": "^10.0.19",
-    "framer-motion": "^1.6.8",
+    "framer-motion": "^1.6.9",
     "google-fonts-webpack-plugin": "^0.4.4",
     "polished": "^3.4.1",
     "querystring": "^0.2.0",
