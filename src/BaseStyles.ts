@@ -53,16 +53,16 @@ css`
     font-size: var(--s4);
   }
   h3 {
-    font-size: var(--s4);
-  }
-  h4 {
     font-size: var(--s3);
   }
-  h5 {
+  h4 {
     font-size: var(--s2);
   }
-  h6 {
+  h5 {
     font-size: var(--s1);
+  }
+  h6 {
+    font-size: var(--s0);
   }
   p,
   a,
@@ -89,8 +89,8 @@ css`
     &:hover {
       cursor: pointer;
     }
-    background-color: ${theme.color.text};
-    color: ${theme.color.secondaryText};
+    background-color: ${theme.color.secondaryBackground};
+    color: ${theme.color.text};
     &[variant='primary'] {
       background-color: ${theme.color.primary};
       color: ${theme.color.secondaryText};

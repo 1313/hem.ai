@@ -10,6 +10,7 @@ import { RecipeIcon } from '../icons/RecipeIcon';
 
 const NavigationLink = styled(NavLink)`
   transition: background-color 100ms ease-in-out;
+
   &:hover,
   &:active,
   &.active {
@@ -25,12 +26,16 @@ const NavigationLink = styled(NavLink)`
   padding: var(--s-5) var(--s-2);
   width: 100%;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   flex-direction: column;
+  @media (${({ theme }) => theme.breakpoints.small}) {
+    flex-direction: row;
+    align-items: space-between;
+  }
 `;
 const NavigationWrapper = styled(motion.nav)`
-  color: ${({ theme }) => theme.color.text};
+  color: ${({ theme }) => theme.color.secondaryText};
   flex: 0 0 auto;
   display: flex;
 
