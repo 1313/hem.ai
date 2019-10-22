@@ -96,7 +96,7 @@
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "querystring": "^0.2.0",
-    "react": "^16.10.2",
+    "react": "^16.11.0",
     "react-dom": "^16.10.2",
     "react-faux-dom": "^4.5.0",
     "react-router": "^5.1.2",
