@@ -2,7 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { lighten } from 'polished';
-
+import { TiHomeOutline } from 'react-icons/ti';
+import { MdSettings } from 'react-icons/md';
+import { GoNote } from 'react-icons/go';
 import { styled } from '../theme';
 
 const NavigationLink = styled(NavLink)`
@@ -86,15 +88,15 @@ export function Navigation(): JSX.Element {
       transition={{ duration: 0.25 }}
     >
       <NavigationLink exact to="/">
-        <HomeIcon />
+        <TiHomeOutline />
         <span>Home</span>
       </NavigationLink>
       <NavigationLink exact to="/recipes">
-        <RecipeIcon />
+        <GoNote />
         <span>Recipes</span>
       </NavigationLink>
       <NavigationLink exact to="/debug">
-        <SettingsIcon />
+        <MdSettings />
         <span>Debug</span>
       </NavigationLink>
     </NavigationWrapper>
