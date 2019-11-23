@@ -6,15 +6,12 @@ export interface Groups<T extends Groupable> {
   [key: string]: T[];
 }
 export function createGroups<T extends Groupable>(groupables: T[]): Groups<T> {
-  return groupables.reduce(
-    (groups, groupable) => {
-      if (groups[groupable.group] === undefined) {
-        // eslint-disable-next-line no-param-reassign
-        groups[groupable.group] = [];
-      }
-      groups[groupable.group].push(groupable);
-      return groups;
-    },
-    {} as Groups<T>,
-  );
+  return groupables.reduce((groups, groupable) => {
+    if (groups[groupable.group] === undefined) {
+      // eslint-disable-next-line no-param-reassign
+      groups[groupable.group] = [];
+    }
+    groups[groupable.group].push(groupable);
+    return groups;
+  }, {} as Groups<T>);
 }

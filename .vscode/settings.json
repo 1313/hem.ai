@@ -13,13 +13,22 @@
     "sonarjs",
     "tinyqueue"
   ],
-
+  "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
   ],
   "files.exclude": {
     "**/node_modules/**": true

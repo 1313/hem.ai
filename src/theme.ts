@@ -4,10 +4,10 @@ export const theme = {
   color: {
     background: '#fefefe',
     secondaryBackground: '#ffffff',
-    primary: '#34495e',
+    primary: '#7986CB',
     secondaryText: '#fefefe',
     text: '#333',
-    clickable: '#5469ae',
+    clickable: '#7986CB',
   },
   breakpoints: {
     small: 'min-width: 600px',
