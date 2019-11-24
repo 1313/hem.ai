@@ -8,7 +8,7 @@
     "type": "github"
   },
   "scripts": {
-    "build": "webpack --env.production --production",
+    "build-prod": "webpack --env.production --production",
     "clean": "rm dist/bundle.js",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "start": "webpack-dev-server --env.development",
