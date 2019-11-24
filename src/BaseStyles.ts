@@ -143,11 +143,13 @@ export const loadBaseCss = (): void => css`
   }
   label {
     display: block;
+    font-size: var(--s0);
+    line-height: 1.4;
   }
   textarea,
   input {
     display: block;
-    padding: var(--s-5) var(--s-4);
+    padding: var(--s-2) var(--s-1);
     border: 1px solid ${theme.color.border};
     border-radius: ${theme.borderRadius};
     width: 100%;

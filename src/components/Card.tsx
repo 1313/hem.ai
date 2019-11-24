@@ -6,7 +6,7 @@ export const Card = styled(motion.div)`
   color: ${({ theme }) => theme.color.text};
   padding: var(--s0);
   > * + * {
-    margin-top: var(--s-4);
+    margin-top: var(--s0);
   }
   box-shadow: ${p => p.theme.boxShadow};
   overflow: hidden;
