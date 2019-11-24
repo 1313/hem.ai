@@ -10,6 +10,7 @@ module.exports = {
         "plugin:jest/all",
         'airbnb',
         'airbnb/hooks',
+        "eslint:recommended",
         'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:@typescript-eslint/eslint-recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
@@ -63,6 +64,13 @@ module.exports = {
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "global-require": "off",
-        "prettier/prettier": "error"
+        "@typescript-eslint/unbound-method": "off",
+        "import/no-cycle": "off",
+        "@typescript-eslint/promise-function-async": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "import/named": "off",
+        "@typescript-eslint/require-await": "off",
+        "import/no-unresolved": "off"
+
     },
 };

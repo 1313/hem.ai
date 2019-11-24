@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
+import { TiDeleteOutline } from 'react-icons/ti';
+import { FaWeightHanging, FaMedal } from 'react-icons/fa';
+import { MdGroupWork } from 'react-icons/md';
+import { GiWeightLiftingUp } from 'react-icons/gi';
 import { TreeChart } from '../components/TreeChart';
 import { createExecutionTree } from '../components/TreeChart/logic';
-
 import { List } from '../components/List';
 import { TextInput } from '../components/TextInput';
 import { Card } from '../components/Card';
@@ -23,20 +26,35 @@ const Row = styled.div`
     margin-left: var(--s-3);
   }
 `;
-const ItemCard = styled(Card)`
-  padding: var(--s-3);
-  position: relative;
+const Item = styled.div`
+  display: flex;
+  flex-basis: 50%;
+  flex-grow: 1;
+  background-color: #fff;
+  justify-content: space-between;
+  border: 1px ${p => p.theme.color.border} solid;
+  border-radius: ${p => p.theme.borderRadius};
+`;
+
+const CloseButton = styled.button`
+  font-size: 1.6rem;
+  line-height: 1;
+  height: 100%;
+
+  display: flex;
+  padding: 0;
+  align-items: center;
+  width: 2.5rem;
+  justify-content: center;
+  box-shadow: none;
+  border: none;
+`;
+const Stat = styled.div`
+  display: inline-block;
   white-space: nowrap;
-  button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    box-shadow: none;
-    border: none;
-  }
+  margin: 0.5rem;
 `;
 const DebugCard = styled(Card)`
-  padding: var(--s-3);
   display: flex;
   flex-direction: column;
 `;
@@ -51,15 +69,30 @@ interface ItemListProps {
 const ItemList = ({ items, onRemove }: ItemListProps): JSX.Element => (
   <List>
     {items.map((item, index) => (
-      <ItemCard key={itemKey(item)}>
-        {item.weight} / {!!item.extraWeight && Math.round(item.extraWeight)}
-        {item.value} / {item.group}
-        {onRemove && (
-          <button type="button" onClick={() => onRemove(index)}>
-            X
-          </button>
+      <Item key={itemKey(item)}>
+        <Stat>
+          <FaWeightHanging /> {item.weight}
+        </Stat>
+        <Stat>
+          <FaMedal />
+          {item.value}
+        </Stat>
+        {!!item.extraWeight && (
+          <Stat>
+            <GiWeightLiftingUp />
+            {Math.round(item.extraWeight)}
+          </Stat>
         )}
-      </ItemCard>
+        <Stat>
+          <MdGroupWork />
+          {item.group}
+        </Stat>
+        {onRemove && (
+          <CloseButton type="button" onClick={() => onRemove(index)}>
+            <TiDeleteOutline />
+          </CloseButton>
+        )}
+      </Item>
     ))}
   </List>
 );

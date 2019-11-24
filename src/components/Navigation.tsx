@@ -8,60 +8,21 @@ import { GoNote } from 'react-icons/go';
 import { styled } from '../theme';
 
 const NavigationLink = styled(NavLink)`
-  &:active,
-  &.active {
-    transition: background-color 100ms ease-in-out;
-    &::before {
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: var(--s-5);
-      width: auto;
-      @media (${({ theme }) => theme.breakpoints.small}) {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: var(--s-5);
-        height: auto;
-      }
-      position: absolute;
-      content: '';
-      display: block;
-
-      background-color: ${props => lighten(0.1, props.theme.color.primary)};
-    }
-  }
   position: relative;
-  color: ${props => lighten(0.3, props.theme.color.primary)};
+  color: ${({ theme }) => lighten(0.3, theme.color.primary)};
   &:hover,
   &:active,
   &.active {
     transition-duration: 250ms;
-
     color: ${({ theme }) => theme.color.secondaryText};
   }
 
-  font-size: var(--s-1);
   padding: var(--s-3) var(--s-2);
   width: 100%;
 
   display: inline-flex;
   align-items: center;
   flex-direction: column;
-  span {
-    display: none;
-  }
-  @media (${({ theme }) => theme.breakpoints.small}) {
-    flex-direction: row;
-    span {
-      display: inline;
-    }
-
-    * + * {
-      margin-left: var(--s-3);
-    }
-  }
 `;
 const NavigationWrapper = styled(motion.nav)`
   color: ${({ theme }) => theme.color.text};

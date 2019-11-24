@@ -4,11 +4,13 @@ export const theme = {
   color: {
     background: '#fefefe',
     secondaryBackground: '#ffffff',
-    primary: '#7986CB',
+    primary: '#3c40c6',
     secondaryText: '#fefefe',
+    border: '#ababab',
     text: '#333',
-    clickable: '#7986CB',
   },
+  boxShadow: 'rgba(0,0,0, 0.5) 0px 0px 6px -3px',
+  borderRadius: '2px',
   breakpoints: {
     small: 'min-width: 600px',
   },

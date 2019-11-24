@@ -1,13 +1,16 @@
 import { injectGlobal as css } from 'emotion';
 
+import { lighten } from 'polished';
 import { theme } from './theme';
 
 css`
   /* latin */
   @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
   * {
     box-sizing: border-box;
   }
+
   :root {
     --ratio: 1.2;
     --s-5: calc(var(--s-4) / var(--ratio));
@@ -21,22 +24,24 @@ css`
     --s3: calc(var(--s2) * var(--ratio));
     --s4: calc(var(--s3) * var(--ratio));
     --s5: calc(var(--s4) * var(--ratio));
-
-    font-size: calc(0.5vw + 12px);
-    font-family: 'Open Sans', sans-serif;
-    color: ${theme.color.text};
   }
+
   html,
   body,
   #root {
     height: 100%;
   }
+
   body {
+    font-size: calc(0.5vw + 12px);
+    font-family: 'Open Sans', sans-serif;
+    color: ${theme.color.text};
     background-color: ${theme.color.background};
     margin: 0;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
   }
+
   p,
   h1,
   h2,
@@ -64,6 +69,7 @@ css`
   h6 {
     font-size: var(--s0);
   }
+
   p,
   a,
   li,
@@ -82,47 +88,45 @@ css`
       color: ${theme.color.primary};
     }
   }
-  button + button {
-    margin-left: var(--s-5);
-  }
+
   button {
+    cursor: pointer;
+    border: none;
     &:hover {
-      cursor: pointer;
-    }
-    background-color: ${theme.color.secondaryBackground};
-    color: ${theme.color.text};
-    &[variant='primary'] {
-      background-color: ${theme.color.primary};
-      color: ${theme.color.secondaryText};
+      background-color: ${lighten(0.01, theme.color.primary)};
     }
     &:active {
-      box-shadow: none;
-      transition-duration: 50ms;
+      transform-origin: center center;
+
+      transform: translateY(1px);
+      transition: none;
     }
-    transition: box-shadow 100ms ease-in-out;
-    border-radius: 2px;
-    border: 1px currentColor ${theme.color.text};
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
-      rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
-    padding: var(--s-4) var(--s-3);
+    transition: transform 100ms ease-in-out;
+    color: ${lighten(0.6, theme.color.primary)};
+    background-color: ${theme.color.primary};
+
+    border-radius: ${theme.borderRadius};
+
+    box-shadow: ${theme.boxShadow};
+    padding: var(--s-2) var(--s-2);
   }
 
   textarea,
   select,
   input {
-    border-radius: 2px;
+    border-radius: ${theme.borderRadius};
     padding: var(--s-5) var(--s-4);
-    border: 1px solid ${theme.color.text};
+    border: 1px solid ${theme.color.border};
   }
-  main * + * {
+  main > * + * {
     margin-top: var(--s-5);
   }
   main {
+    margin-left: var(--s-3);
     overflow: auto;
     flex: 1;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    padding: 0 var(--s0);
   }
   [disabled] {
     opacity: 0.5;
@@ -134,29 +138,24 @@ css`
     vertical-align: middle;
   }
   label {
-    display: inline-block;
-    * + * {
-      margin-top: var(--s-5);
-    }
-    width: 100%;
+    display: block;
   }
   textarea,
   input {
-    width: 100%;
+    display: block;
     padding: var(--s-5) var(--s-4);
-    border: 1px solid currentColor;
-    border-radius: 4px;
+    border: 1px solid ${theme.color.border};
+    border-radius: ${theme.borderRadius};
+    width: 100%;
   }
   button,
   textarea,
   input,
   select {
-    transition: box-shadow 250ms ease-in-out;
-
     &:focus {
       outline: none;
-
-      box-shadow: ${theme.color.clickable} 0px 0px 2px 2px;
+      box-shadow: ${theme.boxShadow},
+        ${lighten(0.35, theme.color.primary)} 0px 0px 4px 1px;
     }
   }
 `;

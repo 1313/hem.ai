@@ -55,6 +55,7 @@ export const List = ({ children, ...props }: ListProps): JSX.Element => (
         (child: ReactNodeWithKey, index: number) => (
           <ListItemWrapper
             key={child.key || index}
+            layoutTransition
             exit="exit"
             variants={itemAnimation}
           >
