@@ -1,3 +1,5 @@
+const GoogleFontsPlugin = require('google-fonts-plugin')
+
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,7 +14,7 @@ module.exports = env => ({
   devtool: env.production ? 'source-map' : 'cheap-module-eval-source-map',
   entry: [
     env.production ? false : 'react-dev-utils/webpackHotDevClient',
-    './src/index',
+    './src',
   ].filter(Boolean),
   output: {
     path: path.join(__dirname, 'dist'),
@@ -28,12 +30,13 @@ module.exports = env => ({
     historyApiFallback: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    mainFiles: ['index'],
+    extensions: ['.mjs', '.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: env.production
       ? undefined
       : {
-          'react-dom': '@hot-loader/react-dom',
-        },
+        'react-dom': '@hot-loader/react-dom',
+      },
   },
   optimization: {
     moduleIds: 'hashed',
@@ -51,7 +54,7 @@ module.exports = env => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.(mjs|js|jsx|ts|tsx)$/,
         include: path.resolve(__dirname, './src'),
         enforce: 'pre',
         use: [
@@ -84,7 +87,7 @@ module.exports = env => ({
         ],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|svg)([#?].+)?$/,
         use: [
           {
             loader: 'file-loader',

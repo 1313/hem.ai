@@ -30,6 +30,7 @@ const Item = styled.div`
   display: flex;
   flex-basis: 50%;
   flex-grow: 1;
+  align-items: center;
   background-color: #fff;
   justify-content: space-between;
   border: 1px ${p => p.theme.color.border} solid;
@@ -50,9 +51,10 @@ const CloseButton = styled.button`
   border: none;
 `;
 const Stat = styled.div`
-  display: inline-block;
   white-space: nowrap;
   margin: 0.5rem;
+  display: flex;
+  align-items: center;
 `;
 const DebugCard = styled(Card)`
   display: flex;

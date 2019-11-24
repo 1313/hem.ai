@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { styled } from '../theme';
 
+const ViewWrapper = styled(motion.div)`
+  & > * + * {
+    margin-top: var(--s-1);
+  }
+`;
 const layoutTransition = {
   initial: { x: '-100%', opacity: 0 },
   animate: {
@@ -27,7 +33,7 @@ interface ViewProps {
 }
 export function View(props: ViewProps): JSX.Element {
   return (
-    <motion.div
+    <ViewWrapper
       initial="initial"
       exit="exit"
       animate="animate"

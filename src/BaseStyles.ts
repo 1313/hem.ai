@@ -3,16 +3,13 @@ import { injectGlobal as css } from 'emotion';
 import { lighten } from 'polished';
 import { theme } from './theme';
 
-css`
-  /* latin */
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
+export const loadBaseCss = (): void => css`
   * {
     box-sizing: border-box;
   }
 
   :root {
-    --ratio: 1.2;
+    --ratio: 1.5;
     --s-5: calc(var(--s-4) / var(--ratio));
     --s-4: calc(var(--s-3) / var(--ratio));
     --s-3: calc(var(--s-2) / var(--ratio));
@@ -34,7 +31,7 @@ css`
 
   body {
     font-size: calc(0.5vw + 12px);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'lato', sans-serif;
     color: ${theme.color.text};
     background-color: ${theme.color.background};
     margin: 0;
@@ -50,23 +47,28 @@ css`
   h5,
   h6 {
     margin: 0;
+    font-weight: normal;
   }
   h1 {
-    font-size: var(--s5);
-  }
-  h2 {
-    font-size: var(--s4);
-  }
-  h3 {
-    font-size: var(--s3);
-  }
-  h4 {
     font-size: var(--s2);
   }
-  h5 {
+  h2 {
     font-size: var(--s1);
   }
+  h3 {
+    font-size: var(--s0);
+  }
+  h4 {
+    font-size: var(--s0);
+    font-style: italic;
+  }
+  h5 {
+    font-style: italic;
+    font-size: var(--s0);
+  }
   h6 {
+    text-decoration: underline;
+    font-style: italic;
     font-size: var(--s0);
   }
 
@@ -95,20 +97,23 @@ css`
     &:hover {
       background-color: ${lighten(0.01, theme.color.primary)};
     }
-    &:active {
-      transform-origin: center center;
 
-      transform: translateY(1px);
-      transition: none;
+    &:active,
+    &:focus:active {
+      box-shadow: ${theme.boxShadowActive};
+      transition-duration: 25ms;
+      transform: translateY(0.5px);
     }
-    transition: transform 100ms ease-in-out;
-    color: ${lighten(0.6, theme.color.primary)};
+
+    transition: box-shadow 150ms ease-in-out, transform 100ms ease-in-out;
+
+    color: ${lighten(0.7, theme.color.primary)};
     background-color: ${theme.color.primary};
 
     border-radius: ${theme.borderRadius};
 
     box-shadow: ${theme.boxShadow};
-    padding: var(--s-2) var(--s-2);
+    padding: var(--s-1) var(--s0);
   }
 
   textarea,
@@ -118,11 +123,10 @@ css`
     padding: var(--s-5) var(--s-4);
     border: 1px solid ${theme.color.border};
   }
-  main > * + * {
-    margin-top: var(--s-5);
-  }
+
   main {
-    margin-left: var(--s-3);
+    padding: var(--s0);
+
     overflow: auto;
     flex: 1;
     -webkit-overflow-scrolling: touch;
@@ -148,9 +152,10 @@ css`
     border-radius: ${theme.borderRadius};
     width: 100%;
   }
-  button,
+
   textarea,
   input,
+  button,
   select {
     &:focus {
       outline: none;

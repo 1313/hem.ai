@@ -21,7 +21,7 @@ module.exports = {
     ],
     overrides: [
         {
-            files: ["*.js", "*.jsx"],
+            files: ["*.js", "*.jsx", "*.mjs"],
             rules: {
                 "@typescript-eslint/explicit-function-return-type": 'off',
                 "@typescript-eslint/no-var-requires": 'off'
@@ -29,7 +29,6 @@ module.exports = {
         }
     ],
     parserOptions: {
-
         project: './tsconfig.json',
         ecmaVersion: 2019, // Allows for the parsing of modern ECMAScript features
         sourceType: 'module', // Allows for the use of imports

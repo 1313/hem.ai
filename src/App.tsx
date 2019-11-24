@@ -1,11 +1,15 @@
 import React from 'react';
-import './BaseStyles';
-
 import { BrowserRouter as Router } from 'react-router-dom';
+
+import { loadFontCss } from './fonts';
+import { loadBaseCss } from './BaseStyles';
 
 import { ViewRouter } from './views/ViewRouter';
 import { Navigation } from './components/Navigation';
 import { styled } from './theme';
+
+loadFontCss();
+loadBaseCss();
 
 const AppWrapper = styled.div`
   height: 100%;
