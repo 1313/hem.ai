@@ -78,7 +78,7 @@
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
     "@reach/dialog": "^0.6.2",
-    "@types/algoliasearch": "^3.34.5",
+    "@types/algoliasearch": "^3.34.7",
     "@types/d3": "^5.7.2",
     "@types/reach__dialog": "^0.1.0",
     "@types/react-faux-dom": "^4.1.3",
