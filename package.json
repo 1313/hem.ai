@@ -43,7 +43,7 @@
     "copy-webpack-plugin": "^5.0.5",
     "coveralls": "^3.0.8",
     "depcheck": "^0.9.1",
-    "eslint": "^6.7.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-loader": "^3.0.2",
