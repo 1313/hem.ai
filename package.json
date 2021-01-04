@@ -87,7 +87,7 @@
     "@types/request": "^2.48.3",
     "@types/set-cookie-parser": "0.0.6",
     "algoliasearch": "^3.35.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "d3": "^5.14.2",
     "emotion": "^10.0.23",
     "emotion-theming": "^10.0.19",
